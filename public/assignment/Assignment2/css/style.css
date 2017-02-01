@@ -40,6 +40,11 @@ body {
     margin-top: 5px;
 }
 
-.list-group a{
+a:-webkit-any-link {
     text-decoration: none;
 }
+
+.navbar-text {
+    text-decoration: none;
+}
+
