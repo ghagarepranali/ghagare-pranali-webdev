@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+<div class="container-fluid">
+    <div class="navbar-text pull-right">
+        <a class="glyphicon glyphicon-ok" href="#/user/{{model.user._id}}"></a>
+    </div>
+    <div class="navbar-header">
+    <a class="navbar-brand" href="#">Profile</a>
+    </div>
+</div>
+</nav>
+
+
+
+<div class="container-fluid">
+    <label for="username">Username</label>
+    <input ng-model="model.user.username" id="username" type="text" placeholder="Username" class="form-control"/>
+
+    <label for="email">Email</label>
+    <input ng-model="model.user.email" id="email" type="email" placeholder="Email Id" class="form-control"/>
+
+    <label for="firstName">First Name</label>
+    <input ng-model="model.user.firstName" id="firstName" type="text" placeholder="First Name" class="form-control"/>
+
+    <label for="lastName">Last Name</label>
+    <input ng-model="model.user.lastName" id="lastName" type="text" placeholder="Last Name" class="form-control"/>
+
+    <a href="#/user/{{model.user._id}}/website" class="btn btn-primary btn-block">Websites</a>
+    <a ng-click="model.updateUsr(model.user)" class="btn btn-block btn-primary">Update</a>
+    <a ng-click="model.deleteUser()"class="btn btn-block btn-primary">Delete</a>
+    <a href="#/login" class="btn btn-danger btn-block">Logout</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid navbar-text pull-right">
+        <a class="glyphicon glyphicon-user" href="#"></a>
+    </div>
+</nav>

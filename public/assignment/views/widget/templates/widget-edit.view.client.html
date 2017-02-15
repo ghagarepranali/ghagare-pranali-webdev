@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Widget Editor</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid"
+     ng-include="model.getEditorTemplateUrl(model.widget.widgetType)">
+
+</div>
+<div class="container-fluid">
+    <a ng-click="model.updateWid(model.widget)" class="btn btn-primary btn-block">
+        Update
+    </a>
+    <a ng-click="model.createWid(model.widget)" class="btn btn-primary btn-block">
+        Create
+    </a>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid navbar-text pull-right">
+        <a class="glyphicon glyphicon-user" href="#/user/{{model.userId}}"></a>
+    </div>
+</nav>
