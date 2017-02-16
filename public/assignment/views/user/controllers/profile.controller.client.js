@@ -17,8 +17,8 @@
         init();
 
         function updateUsr  (user) {
-            var pg = UserService.updateUser(vm.userId, user);
-            if (pg == null) {
+            var usr = UserService.updateUser(vm.userId, user);
+            if (usr == null) {
                 vm.error = "Unable to update the user";
             } else {
                 vm.message = "User is updated successfully";

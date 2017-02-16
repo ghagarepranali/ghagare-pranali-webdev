@@ -8,7 +8,7 @@
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
         vm.deleteWebsite = deleteWebsite;
-        vm.updateW = updateW;
+        vm.updateWeb = updateWeb;
 
 
         function init() {
@@ -17,7 +17,7 @@
         }
         init();
 
-        function updateW(webDetails) {
+        function updateWeb(webDetails) {
             var web = WebsiteService.updateWebsite(vm.websiteId, webDetails);
             if(web == null){
                 vm.error = "unable to update user";

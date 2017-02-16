@@ -9,7 +9,7 @@
         vm.websiteId = $routeParams.wid;
         vm.pageId=$routeParams.pid;
         vm.deletePage=deletePage;
-        vm.updateP = updateP;
+        vm.updatePg = updatePg;
 
         function init(){
             vm.page = PageService.findPageById(vm.pageId);
@@ -17,7 +17,7 @@
         }
         init();
 
-       function updateP(pgDetails){
+       function updatePg(pgDetails){
             var pg = PageService.updatePage(vm.pageId, pgDetails);
             if(pg == null){
                 vm.error = "unable to update the page";
