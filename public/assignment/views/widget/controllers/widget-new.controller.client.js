@@ -16,7 +16,7 @@
 
 
         function createHeaderWidget() {
-            var widget = { "_id": "100", "widgetType": "HEADER", "pageId": "", "size": 2, "text": "Text"};
+            var widget = { "_id": "100", "widgetType": "HEADER", "pageId": "", "size": 2, "text": ""};
             vm.widget = WidgetService.createWidget(vm.pageId, widget);
             $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
 
@@ -25,19 +25,19 @@
             return 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
         }
         function createYouTubeWidget() {
-            var widget = { "_id": "", "widgetType": "YOUTUBE", "pageId": "", "width": "100%", "url": "URL"};
+            var widget = { "_id": "", "widgetType": "YOUTUBE", "pageId": "", "width": "100%", "url": ""};
             vm.widget = WidgetService.createWidget(vm.pageId, widget);
             $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id);
         }
 
         function createImageWidget() {
-            var widget = { "_id": "", "widgetType": "IMAGE", "pageId": "", "width": "100%", "url": "URL"};
+            var widget = { "_id": "", "widgetType": "IMAGE", "pageId": "", "width": "100%", "url": ""};
             vm.widget = WidgetService.createWidget(vm.pageId, widget);
             $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id);
         }
 
         function createHTMLWidget() {
-            var widget = { "_id": "", "widgetType": "HTML", "pageId": "", "text": "<p>Lorem ipsum</p>"};
+            var widget = { "_id": "", "widgetType": "HTML", "pageId": "", "text": ""};
             vm.widget = WidgetService.createWidget(vm.pageId, widget);
             $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id);
         }
