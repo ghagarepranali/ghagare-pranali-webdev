@@ -13,9 +13,9 @@
         vm.updateUsr = function (user) {
             var pg = UserService.updateUser(vm.userId, user);
             if (pg == null) {
-                vm.error = "unable to update the page";
+                vm.error = "Unable to update the user";
             } else {
-                vm.message = "page is updated successfully";
+                vm.message = "User is updated successfully";
                 $location.url("/user/" + vm.userId);
 
             }

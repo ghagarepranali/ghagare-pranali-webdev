@@ -22,6 +22,7 @@
         this.findWidgetById = findWidgetById;
         this.updateWidget = updateWidget;
         this.createWidget = createWidget;
+        this.deleteWidget = deleteWidget;
 
         function findAllWidgets(pageId) {
             return widgets;
@@ -58,6 +59,14 @@
             widget._id = ((new Date()).getTime()).toString();
             widgets.push(widget);
             return angular.copy(widget);
+        }
+
+        function deleteWidget(wid){
+            for(var w in widgets){
+                if(widgets[w]._id == wid){
+                    widgets.splice(w,1);
+                }
+            }
         }
     }
 })();
