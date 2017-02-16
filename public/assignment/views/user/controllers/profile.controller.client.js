@@ -6,11 +6,17 @@
     function ProfileController($routeParams,UserService, $location) {
         var vm = this;
         vm.userId = $routeParams.uid;
-        var user = UserService.findUserById(vm.userId);
-        vm.user = user;
         vm.deleteUser=deleteUser;
+        vm.updateUsr = updateUsr;
 
-        vm.updateUsr = function (user) {
+
+        function init() {
+            var user = UserService.findUserById(vm.userId);
+            vm.user = user;
+        }
+        init();
+
+        function updateUsr  (user) {
             var pg = UserService.updateUser(vm.userId, user);
             if (pg == null) {
                 vm.error = "Unable to update the user";
@@ -20,7 +26,6 @@
 
             }
         };
-
         function deleteUser () {
             UserService.deleteUser(vm.userId);
             $location.url("/login");
