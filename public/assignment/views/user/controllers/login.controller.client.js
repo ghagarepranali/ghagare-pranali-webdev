@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("loginController", loginController);
+        .controller("LoginController", LoginController);
 
-    function loginController($location, UserService) {
+    function LoginController($location, UserService) {
         var vm = this;
         vm.login = login;
 
