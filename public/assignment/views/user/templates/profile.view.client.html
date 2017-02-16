@@ -22,20 +22,36 @@
 
 
     <label for="username">Username</label>
-    <input ng-model="model.user.username" id="username" type="text" placeholder="Username" class="form-control"/>
+    <input ng-model="model.user.username"
+           id="username"
+           type="text"
+           placeholder="Username"
+           class="form-control"/>
 
     <label for="email">Email</label>
-    <input ng-model="model.user.email" id="email" type="email" placeholder="Email Id" class="form-control"/>
+    <input ng-model="model.user.email"
+           id="email"
+           type="email"
+           placeholder="Email Id"
+           class="form-control"/>
 
     <label for="firstName">First Name</label>
-    <input ng-model="model.user.firstName" id="firstName" type="text" placeholder="First Name" class="form-control"/>
+    <input ng-model="model.user.firstName"
+           id="firstName"
+           type="text"
+           placeholder="First Name"
+           class="form-control"/>
 
     <label for="lastName">Last Name</label>
-    <input ng-model="model.user.lastName" id="lastName" type="text" placeholder="Last Name" class="form-control"/>
+    <input ng-model="model.user.lastName"
+           id="lastName"
+           type="text"
+           placeholder="Last Name"
+           class="form-control"/>
 
     <a href="#/user/{{model.user._id}}/website" class="btn btn-primary btn-block">Websites</a>
     <a ng-click="model.updateUsr(model.user)" class="btn btn-block btn-success">Update</a>
-    <a ng-click="model.deleteUser()"class="btn btn-block btn-primary">Delete</a>
+    <a ng-click="model.deleteUser()" class="btn btn-block btn-primary">Delete</a>
     <a href="#/login" class="btn btn-danger btn-block">Logout</a>
 </div>
 

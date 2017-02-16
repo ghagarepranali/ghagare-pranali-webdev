@@ -17,7 +17,6 @@
 </nav>
 
 <div class="container-fluid">
-
     <div ng-repeat="widget in model.widgets">
         <div class="widget-toolbar">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
@@ -26,7 +25,6 @@
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
 
-        <!--<ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>-->
 
         <div ng-switch="widget.widgetType">
             <div ng-switch-when="HEADER">
@@ -43,7 +41,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

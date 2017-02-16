@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" xmlns="http://www.w3.org/1999/html">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
@@ -23,7 +23,7 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a class="glyphicon glyphicon-ok" href="#/user/{{model.userId}}/website">
+                <a class="glyphicon glyphicon-ok" href="" ng-click="model.updateWeb(model.website)">
                 </a>
             </div>
             <div class="navbar-header">
@@ -65,6 +65,7 @@
             </li>
         </ul>
     </div>
+
     <div class="col-sm-8 wbdv-right-pane col-xs-12">
         <label for="website-name">Website Name</label>
         <input ng-model="model.website.name" placeholder="Website Name"

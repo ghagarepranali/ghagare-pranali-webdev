@@ -2,11 +2,22 @@
 <div class="container-fluid">
 <h1>Register</h1>
     <label for="username">Username</label>
-    <input  ng-model="user.username" id="username" type="text" class="form-control" placeholder="username"/>
+    <input  ng-model="user.username"
+            id="username"
+            type="text"
+            class="form-control"
+            placeholder="username"/>
     <label for="password">Password</label>
-    <input ng-model="user.password" id="password" type="password" class="form-control" placeholder="password"/>
+    <input ng-model="user.password"
+           id="password"
+           type="password"
+           class="form-control"
+           placeholder="password"/>
     <label for="verifyPassword">Verify Password</label>
-    <input id="verifyPassword" type="password" class="form-control" placeholder="verify password"/>
+    <input id="verifyPassword"
+           type="password"
+           class="form-control"
+           placeholder="verify password"/>
 
     <a ng-click="model.createUser(user)" class="btn btn-block btn-primary">Register</a>
     <a href="#/login" class="btn btn-block btn-danger">Cancel</a>
