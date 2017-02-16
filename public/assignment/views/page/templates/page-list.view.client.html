@@ -2,7 +2,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class=" navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
+            <a href="#/user/{{model.userId}}/website/">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -25,9 +25,9 @@
                     Name
                     <span class="glyphicon glyphicon-triangle-top"></span>
                 </div>
-                <div class="col-xs-1">
+                <div class="col-sm-6">
                     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="pull-right">
-                        <span class="glyphicon glyphicon-plus"></span>
+                        <span class="glyphicon glyphicon-plus  pull-right"></span>
                     </a>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         {{page.name}}</a>
 
                 </div>
-                <div class="col-xs-1">
+                <div class="col-sm-6">
                     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
@@ -50,7 +50,7 @@
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid navbar-text pull-right">
-        <a href="../views/user/profile.view.client.html">
+        <a href="#/user/{{model.userId}}">
             <span class="glyphicon glyphicon-user"></span>
         </a>
     </div>

@@ -2,12 +2,12 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a href="website-list.view.client.html">
+                <a href="#/user/{{model.userId}}/website/">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="website-new.view.client.html">
+                <a href="#/user/{{model.userId}}/website/new">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
 
@@ -18,7 +18,7 @@
         </div>
         <div class="col-sm-8">
             <div class="navbar-text pull-left visible-xs">
-                <a href="website-list.view.client.html">
+                <a href="#/user/{{model.userId}}/website/">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -44,7 +44,7 @@
                         <span class="glyphicon glyphicon-triangle-top"></span>
                     </div>
                     <div class="col-xs-2">
-                        <a href="website-new.html" class="pull-right">
+                        <a href="#/user/{{model.userId}}/website/new" class="pull-right">
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
                     </div>
@@ -57,7 +57,9 @@
                             {{website.name}}</a>
                     </div>
                     <div class="col-xs-2">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
                     </div>
                 </div>
             </li>
@@ -89,6 +91,6 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid navbar-text pull-right">
-        <a class="glyphicon glyphicon-user" href="../user/profile.view.client.html"></a>
+        <a class="glyphicon glyphicon-user" href="#/user/{{model.userId}}"></a>
     </div>
 </nav>

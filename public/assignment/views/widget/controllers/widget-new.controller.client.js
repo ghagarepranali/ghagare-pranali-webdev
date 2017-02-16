@@ -12,6 +12,7 @@
         vm.getEditorTemplateUrl = getEditorTemplateUrl;
         vm.createYouTubeWidget = createYouTubeWidget;
         vm.createImageWidget = createImageWidget;
+        vm.createHTMLWidget = createHTMLWidget;
 /*
         function init() {
             //vm.widget = WidgetService.findWidgetById(vm.widgetId);
