@@ -44,7 +44,7 @@ module.exports = function (app){
         var page = req.body;
         for(var p in pages){
             var pg = pages[p];
-            if(pg._id === pageId){
+            if(pg._id == pageId){
                 pages[p].description = page.description;
                 pages[p].name = page.name;
                 res.json(pg);

@@ -46,7 +46,7 @@ module.exports = function (app){
     var website = req.body;
         for(var w in websites){
             var web = websites[w];
-            if(web._id === websiteId){
+            if(web._id == websiteId){
                 websites[w].description = website.description;
                 websites[w].name = website.name;
                 res.json(web);
