@@ -1,7 +1,6 @@
+<div class="container-fluid">
 <h1>HEADER Editor</h1>
 
-<label>Name</label>
-<input ng-model="model.widget.name" class="form-control"/>
 
 <label>Text</label>
 <input ng-model="model.widget.text" class="form-control"/>
@@ -16,3 +15,11 @@
     <option>6</option>
 </select>
 
+
+    <a ng-click="model.updateWidget(model.widget)" class="btn btn-primary btn-block">
+        Update
+    </a>
+    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
+        Delete
+    </a>
+</div>

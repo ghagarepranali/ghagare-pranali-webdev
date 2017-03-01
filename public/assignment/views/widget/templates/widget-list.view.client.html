@@ -16,13 +16,13 @@
     </div>
 </nav>
 
-<div class="container-fluid">
-    <div ng-repeat="widget in model.widgets">
+<div wbdv-sortable="" class="container-fluid" id="widget-list">
+    <div class="wid" ng-repeat="widget in model.widgets">
         <div class="widget-toolbar">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
+            <span class="widget-dragger glyphicon glyphicon-align-justify"></span>
         </div>
 
 

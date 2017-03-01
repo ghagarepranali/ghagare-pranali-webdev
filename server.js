@@ -10,6 +10,9 @@ app.use(express.static(__dirname + '/public'));
 
 require ("./test/app.js")(app);
 
+// as we pass express var we can the server can listen
+require("./assignment/app.js")(app);
+
 var port = process.env.PORT || 3000;
 
 app.listen(port);

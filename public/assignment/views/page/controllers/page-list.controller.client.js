@@ -8,8 +8,17 @@
         vm.userId=$routeParams.uid;
         vm.websiteId = $routeParams.wid;
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
-            vm.page = PageService.findPageById(vm.pageId);
+            //vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService
+                .findPageByWebsiteId(vm.websiteId)
+                .success(function (page) {
+                    vm.pages=page;
+                });
+            PageService
+                .findPageById(vm.pageId)
+                .success(function (page) {
+                    vm.page=page;
+                });
         }
         init();
     }

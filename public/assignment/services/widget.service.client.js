@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .service("WidgetService", WidgetService);
 
-    function WidgetService() {
+    function WidgetService($http) {
 
         var widgets = [
             { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -17,56 +17,43 @@
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
 
-
-        this.findAllWidgets = findAllWidgets;
-        this.findWidgetById = findWidgetById;
-        this.updateWidget = updateWidget;
-        this.createWidget = createWidget;
-        this.deleteWidget = deleteWidget;
+        var api = {
+            "findAllWidgets": findAllWidgets,
+            "findWidgetById" : findWidgetById,
+            "updateWidget": updateWidget,
+            "createWidget":createWidget,
+            "deleteWidget":deleteWidget,
+            "UpdateWidgetPosition": UpdateWidgetPosition
+    };
+        return api;
 
         function findAllWidgets(pageId) {
-            return widgets;
+            return $http.get("/api/page/"+pageId+"/widget");
+
         }
 
         function findWidgetById(widgetId) {
-            for(var w in widgets) {
-                if(widgets[w]._id === widgetId) {
-                    return angular.copy(widgets[w]);
-                }
-            }
-            return null;
+            return $http.get("/api/widget/"+widgetId);
+
         }
 
         function updateWidget(widgetId, widget){
-            for(var w in widgets){
-                if(widgets[w]._id === widgetId){
-                    if(widgets[w].widgetType == "HEADER" || widgets[w].widgetType == "HTML"){
-                        widgets[w].size = widget.size;
-                        widgets[w].text = widget.text;
-                        return widgets[w];
-                    } else if(widgets[w].widgetType == "IMAGE" || widgets[w].widgetType == "YOUTUBE"){
-                        widgets[w].url = widget.url;
-                        widgets[w].width = widget.width;
-                        return widgets[w];
-                    }
-                }
-            }
-            return null;
+            return $http.put("/api/widget/"+widgetId, widget);
+
         }
 
         function createWidget(pageId, widget) {
-            widget.pageId = pageId;
-            widget._id = ((new Date()).getTime()).toString();
-            widgets.push(widget);
-            return angular.copy(widget);
+            return $http.post("/api/page/"+pageId+"/widget", widget);
+
         }
 
         function deleteWidget(wid){
-            for(var w in widgets){
-                if(widgets[w]._id == wid){
-                    widgets.splice(w,1);
-                }
-            }
+            return $http.delete("/api/widget/"+wid);
+
+        }
+        
+        function UpdateWidgetPosition(startIndex, finalIndex, pageId) {
+            return $http.put("/page/" + pageId + "/widget?initial=" + startIndex + "&final=" + finalIndex);
         }
     }
 })();

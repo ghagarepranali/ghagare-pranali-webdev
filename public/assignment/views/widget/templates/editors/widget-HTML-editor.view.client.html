@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <h1>HTML Editor</h1>
 
 
@@ -7,12 +8,12 @@
 <label>Text</label>
 <input ng-model="model.widget.text" class="form-control"/>
 
-<label>Size</label>
-<select class="form-control">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
-</select>
+
+
+    <a ng-click="model.updateWidget(model.widget)" class="btn btn-primary btn-block">
+        Update
+    </a>
+    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
+        Delete
+    </a>
+</div>

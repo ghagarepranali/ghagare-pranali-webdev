@@ -11,24 +11,53 @@
 
 
         function init() {
-            var user = UserService.findUserById(vm.userId);
-            vm.user = user;
+            UserService
+                .findUserById(vm.userId)
+                .success(renderUser);
+           /* var promise = UserService.findUserById(vm.userId);
+            promise.success(function(user){
+                vm.user = user;
+            });
+*/
         }
         init();
+        function renderUser(user) {
+            vm.user = user;
+        }
 
         function updateUsr  (user) {
-            var usr = UserService.updateUser(vm.userId, user);
-            if (usr == null) {
-                vm.error = "Unable to update the user";
-            } else {
-                vm.message = "User is updated successfully";
-                $location.url("/user/" + vm.userId);
+            var promise = UserService
+                .updateUser(vm.userId, user);
+            promise.success(function (user) {
+                if (user == null) {
+                    vm.error = "Unable to update the user";
+                } else {
+                    vm.message = "User is updated successfully";
+                    $location.url("/user/" + vm.userId);
 
-            }
+                }
+            })
+
         };
         function deleteUser () {
-            UserService.deleteUser(vm.userId);
-            $location.url("/login");
+            var answer = confirm("Are you sure?");
+            console.log(answer);
+            if(answer) {
+                UserService
+                    .deleteUser(vm.userId)
+                    .success(function () {
+                        $location.url("/login");
+                    })
+                    .error(function () {
+                        vm.error = 'unable to remove user';
+                    });
+            }
+
+          /*  var promise = UserService.deleteUser(vm.userId);
+            promise.success(function () {
+                $location.url("/login");
+            })*/
+
         };
 
     }

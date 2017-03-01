@@ -14,7 +14,11 @@
 
 
         function init() {
-            vm.widgets = WidgetService.findAllWidgets(vm.pageId);
+            WidgetService
+                .findAllWidgets(vm.pageId)
+                .success(function (widgets) {
+                    vm.widgets=widgets;
+                });
         }
 
         init();

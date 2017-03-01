@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <h1>YOUTUBE Editor</h1>
 
 
@@ -9,3 +10,12 @@
 
 <label>Width</label>
 <input ng-model="model.widget.width" class="form-control"/>
+
+
+    <a ng-click="model.updateWidget(model.widget)" class="btn btn-primary btn-block">
+        Update
+    </a>
+    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
+        Delete
+    </a>
+</div>

@@ -11,15 +11,31 @@
         vm.createPage = createPage;
 
         function init() {
-            vm.page = PageService.findPageById(vm.pageId);
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService
+                .findPageById(vm.pageId)
+                .success(renderPage);
+            PageService
+                .findPageByWebsiteId(vm.websiteId)
+                .success(function (page) {
+                    vm.pages=page;
+                });
         }
         init();
 
         function createPage (page) {
-            PageService.createPage(vm.websiteId, page);
+            PageService
+                .createPage(vm.websiteId, page)
+                .success(function (page) {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                })
+                .error(function (err) {
+                    vm.message = "error creating page";
+                });
             //vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+
         };
+        function renderPage(page) {
+            vm.page=page;
+        }
     }
 })();

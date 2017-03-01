@@ -11,33 +11,47 @@
         vm.widgetId = $routeParams.wgid;
         vm.getEditorTemplateUrl = getEditorTemplateUrl;
         vm.deleteWidget = deleteWidget;
-        vm.updateWid =  updateWid;
-        vm.createWid = createWid;
+        vm.updateWidget =  updateWidget;
+        vm.createWidget = createWidget;
 
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
+           WidgetService
+                .findWidgetById(vm.widgetId)
+                .success(renderWidgets);
         }
         init();
 
-        function updateWid(widget) {
-            var wid = WidgetService.updateWidget(vm.widgetId, widget);
-            if(wid == null){
-                vm.error = "unable to update user";
-            } else{
-                vm.message = "user successfully updated";
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
-            }
-        };
+        function renderWidgets(widget) {
+            vm.widget=widget;
+        }
+
+        function updateWidget(widget) {
+             WidgetService
+                .updateWidget(vm.widgetId, widget)
+                .success(function (wid) {
+                    if(wid == null){
+                        vm.error = "unable to update user";
+                    } else{
+                        vm.message = "user successfully updated";
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                    }
+                });
+
+        }
 
 
-        function createWid(widget){
-            var wid = WidgetService.createWidget(vm.pageId, widget);
-            if(wid == null){
-                vm.error = "unable to update user";
-            } else{
-                vm.message = "user successfully updated";
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
-            }
+        function createWidget(widget){
+            WidgetService
+                .createWidget(vm.pageId, widget)
+                .success(function (wid) {
+                    if(wid == null){
+                        vm.error = "unable to update user";
+                    } else{
+                        vm.message = "user successfully updated";
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                    }
+                });
+
         }
 
         function getEditorTemplateUrl(type) {
@@ -45,8 +59,15 @@
         }
 
         function deleteWidget() {
-            WidgetService.deleteWidget(vm.widgetId);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+            WidgetService
+                .deleteWidget(vm.widgetId)
+                .success(function () {
+                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+               })
+                .error(function () {
+                    vm.error = 'unable to remove widget';
+                });
+
         };
     }
 })();

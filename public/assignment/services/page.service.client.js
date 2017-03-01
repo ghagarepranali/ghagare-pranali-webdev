@@ -4,7 +4,7 @@
         .factory("PageService", PageService);
 
 
-    function PageService() {
+    function PageService($http) {
         var pages = [
             { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
             { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
@@ -21,47 +21,28 @@
         return api;
 
         function createPage(websiteId, page) {
-            page.websiteId = websiteId;
-            page._id = (new Date()).getTime();
-            pages.push(page);
+            return $http.post("/api/website/"+websiteId+"/page", page);
+
         }
 
         function findPageByWebsiteId(websiteId){
-            var pgs = [];
-            for(p in pages) {
-                if (pages[p].websiteId == websiteId)
-                    pgs.push(pages[p]);
-            }
-                return pgs;
+            return $http.get("/api/website/"+websiteId+"/page");
+
         }
 
         function findPageById(pageId){
-            for(p in pages){
-                if(pages[p]._id === pageId){
-                    return angular.copy(pages[p]);
-                }
-            }
-            return null;
+            return $http.get("/api/page/"+pageId);
+
         }
 
         function deletePage(pageId) {
-            for(p in pages){
-                if(pages[p]._id == pageId){
-                    pages.splice(p,1);
-                }
-            }
+            return $http.delete("/api/page/"+pageId);
+
         }
 
         function updatePage(pageId, page) {
-            for(p in pages){
-                var pg = pages[p];
-                if(pg._id === pageId){
-                    pages[p].name = page.name;
-                    pages[p].description=page.description;
-                    return pg;
-                }
-            }
-            return null;
+            return $http.put("/api/page/"+pageId, page);
+
         }
 
     }

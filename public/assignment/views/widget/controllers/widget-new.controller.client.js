@@ -17,8 +17,11 @@
 
         function createHeaderWidget() {
             var widget = { "_id": "100", "widgetType": "HEADER", "pageId": "", "size": 2, "text": ""};
-            vm.widget = WidgetService.createWidget(vm.pageId, widget);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
+            WidgetService.createWidget(vm.pageId, widget).success(function (widget) {
+                vm.widget=widget;
+                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
+            });
+
 
         }
         function getEditorTemplateUrl(type) {
@@ -26,20 +29,32 @@
         }
         function createYouTubeWidget() {
             var widget = { "_id": "", "widgetType": "YOUTUBE", "pageId": "", "width": "100%", "url": ""};
-            vm.widget = WidgetService.createWidget(vm.pageId, widget);
-            $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id);
+            WidgetService.createWidget(vm.pageId, widget)
+                .success(function (widget) {
+                    vm.widget=widget;
+                    $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id);
+                });
+
         }
 
         function createImageWidget() {
             var widget = { "_id": "", "widgetType": "IMAGE", "pageId": "", "width": "100%", "url": ""};
-            vm.widget = WidgetService.createWidget(vm.pageId, widget);
-            $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id);
+             WidgetService.createWidget(vm.pageId, widget)
+                .success(function (widget) {
+                    vm.widget=widget;
+                    $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id);
+                });
+
         }
 
         function createHTMLWidget() {
             var widget = { "_id": "", "widgetType": "HTML", "pageId": "", "text": ""};
-            vm.widget = WidgetService.createWidget(vm.pageId, widget);
-            $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id);
+            WidgetService.createWidget(vm.pageId, widget)
+                .success(function (widget) {
+                    vm.widget=widget;
+                    $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id)
+                });
+           ;
         }
 
 
