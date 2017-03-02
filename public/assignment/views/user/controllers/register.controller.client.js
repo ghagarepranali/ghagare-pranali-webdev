@@ -5,22 +5,23 @@
 
     function RegisterController(UserService, $routeParams, $location) {
         var vm = this;
-        vm.createUser = createUser;
         vm.register = register;
 
-        function createUser(user){
-            var user = UserService.createUser(user);
-            $location.url("/user/"+user._id);
-        }
+
 
         function register(user){
             UserService
                 .findUserByUsername(user.username)
                 .success(function(user){
-                    vm.message = "The useranme is already taken";
+                    vm.message = "The username is already taken";
                 })
                 .error(function (err) {
-                    vm.message="available";
+                    UserService
+                        .createUser(user)
+                        .success(function (user) {
+                            var user = user;
+                            $location.url("/user/"+user._id);
+                        });
             });
         }
     }
