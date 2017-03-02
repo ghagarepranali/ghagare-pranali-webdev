@@ -2,23 +2,21 @@
 
 <div class="container-fluid">
     <h1>IMAGE Editor</h1>
-<label>Name</label>
-<input ng-model="model.widget.name" class="form-control"/>
-
 
 <label>Width</label>
 <input ng-model="model.widget.width" class="form-control"/>
-
 
 <form action="/api/upload" method="post" enctype="multipart/form-data">
     <input name="myFile" type="file" class="form-control"/>
     <input name="uid" value="{{model.userId}}" style="display: none"/>
     <input name="wid" value="{{model.websiteId}}" style="display: none"/>
     <input name="widgetId" value="{{model.widget._id}}" style="display: none"/>
-    <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+    <button type="submit" class="btn btn-block btn-success">Upload Image</button>
 </form>
 
-
+    <a ng-click="model.updateWidget(model.widget)" class="btn btn-primary btn-block">
+        Update Width
+    </a>
     <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
         Delete
     </a>
