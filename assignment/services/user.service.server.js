@@ -76,10 +76,10 @@ module.exports = function (app, userModel) {
                 if (users.length != 0) {
                     res.json(users[0]);
                 } else {
-                    res.sendStatus(404);
+                    res.sendStatus(500);
                 }
             }, function (err) {
-                res.sendStatus(404);
+                res.sendStatus(500).send(err);
 
             });
         /* var user = users.find(function (u) {
@@ -103,10 +103,10 @@ module.exports = function (app, userModel) {
                 if (user.length != 0) {
                     res.json(user[0]);
                 } else {
-                    res.sendStatus(404);
+                    res.sendStatus(500);
                 }
             }, function (err) {
-                res.sendStatus(404);
+                res.sendStatus(500).send(err);
             });
 
         /*  var user = users.find(function (user) {
@@ -123,9 +123,8 @@ module.exports = function (app, userModel) {
             .findUserById(userId)
             .then(function (user) {
                 res.json(user);
-                console.log("user id found");
-            }, function (err) {
-                res.sendStatus(500).send(err);
+            }, function (error) {
+                res.sendStatus(500);
             });
         /*var user = users.find(function (u) {
          return u._id == userId;
@@ -166,7 +165,6 @@ module.exports = function (app, userModel) {
          res.json(users[u]);
          return;
          }
-
          }*/
     }
 

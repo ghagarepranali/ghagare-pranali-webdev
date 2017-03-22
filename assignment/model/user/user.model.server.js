@@ -29,7 +29,7 @@ module.exports = function () {
         console.log(userId);
         return UserModel.findById(userId);
     }
-    
+
     function findUserByCredentials(username, password) {
         return UserModel.find({"username": username, "password": password});
     }
@@ -37,16 +37,16 @@ module.exports = function () {
     function findUserByUsername(username) {
         return UserModel.find({"username": username});
     }
-    
+
     function updateUser(userId, updatedUser) {
         return UserModel.update({_id: userId},
             {$set:updatedUser});/*{$set:{
-            username: user.username,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            websites: user.websites
-        }});*/
+         username: user.username,
+         email: user.email,
+         firstName: user.firstName,
+         lastName: user.lastName,
+         websites: user.websites
+         }});*/
     }
 
     function deleteUser(userId) {
@@ -57,7 +57,7 @@ module.exports = function () {
             });
 
     }
-    
+
     function setModel(_model) {
         model = _model;
     }
