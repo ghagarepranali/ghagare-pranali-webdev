@@ -123,7 +123,6 @@ module.exports = function (app, widgetModel){
             .updateWidget(widgetId, imgWidget)
             .then(function (response) {
                 if (response.ok === 1 && response.n === 1) {
-                    console.log("pageid in service"+pageId);
                     res.redirect(req.get('referrer') + "#/user/" + uid + "/website/" + wid + "/page/" + pageId + "/widget");
                 } else {
                     res.sendStatus(404);

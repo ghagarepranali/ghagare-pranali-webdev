@@ -1,7 +1,6 @@
 module.exports = function () {
   var mongoose = require('mongoose');
 
-  console.log("in schema");
   var UserSchema = mongoose.Schema({
       username: String,
       password: String,
