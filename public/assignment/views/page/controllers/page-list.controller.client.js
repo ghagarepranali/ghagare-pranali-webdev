@@ -14,11 +14,11 @@
                 .success(function (page) {
                     vm.pages=page;
                 });
-            PageService
+            /*PageService
                 .findPageById(vm.pageId)
                 .success(function (page) {
                     vm.page=page;
-                });
+                });*/
         }
         init();
     }

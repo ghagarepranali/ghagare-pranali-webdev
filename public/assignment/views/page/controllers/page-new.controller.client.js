@@ -7,13 +7,13 @@
         var vm = this;
         vm.userId=$routeParams.uid;
         vm.websiteId = $routeParams.wid;
-        vm.pageId=$routeParams.pid;
+      //  vm.pageId= $routeParams.pid;
         vm.createPage = createPage;
 
         function init() {
-            PageService
+            /*PageService
                 .findPageById(vm.pageId)
-                .success(renderPage);
+                .success(renderPage);*/
             PageService
                 .findPageByWebsiteId(vm.websiteId)
                 .success(function (page) {
@@ -22,7 +22,7 @@
         }
         init();
 
-        function createPage (page) {
+        function createPage(page) {
             PageService
                 .createPage(vm.websiteId, page)
                 .success(function (page) {

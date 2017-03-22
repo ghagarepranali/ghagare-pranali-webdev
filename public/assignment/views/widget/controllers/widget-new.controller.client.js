@@ -13,12 +13,13 @@
         vm.createYouTubeWidget = createYouTubeWidget;
         vm.createImageWidget = createImageWidget;
         vm.createHTMLWidget = createHTMLWidget;
+        vm.createTextWidget = createTextWidget;
 
 
         function createHeaderWidget() {
-            var widget = { "_id": "100", "widgetType": "HEADER", "pageId": "", "size": 2, "text": ""};
-            WidgetService.createWidget(vm.pageId, widget).success(function (widget) {
-                vm.widget=widget;
+            var widget = { "widgetType": "HEADER", "pageId": "", "size": 2, "text": ""};
+            WidgetService.createWidget(vm.pageId, widget).success(function (response) {
+                vm.widget=response;
                 $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
             });
 
@@ -28,33 +29,42 @@
             return 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
         }
         function createYouTubeWidget() {
-            var widget = { "_id": "", "widgetType": "YOUTUBE", "pageId": "", "width": "100%", "url": ""};
+            var widget = {"widgetType": "YOUTUBE", "pageId": "", "width": "100%", "url": ""};
             WidgetService.createWidget(vm.pageId, widget)
-                .success(function (widget) {
-                    vm.widget=widget;
+                .success(function (response) {
+                    vm.widget=response;
                     $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id);
                 });
 
         }
 
         function createImageWidget() {
-            var widget = { "_id": "", "widgetType": "IMAGE", "pageId": "", "width": "100%", "url": ""};
+            var widget = { "widgetType": "IMAGE", "pageId": "", "width": "100%", "url": ""};
              WidgetService.createWidget(vm.pageId, widget)
-                .success(function (widget) {
-                    vm.widget=widget;
+                .success(function (response) {
+                    vm.widget=response;
                     $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id);
                 });
 
         }
 
         function createHTMLWidget() {
-            var widget = { "_id": "", "widgetType": "HTML", "pageId": "", "text": ""};
+            var widget = { "widgetType": "HTML", "pageId": "", "text": ""};
             WidgetService.createWidget(vm.pageId, widget)
-                .success(function (widget) {
-                    vm.widget=widget;
+                .success(function (response) {
+                    vm.widget=response;
                     $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id)
                 });
-           ;
+
+        }
+
+        function createTextWidget() {
+            var widget = { "widgetType": "TEXT", "pageId": "", "text": ""};
+            WidgetService.createWidget(vm.pageId, widget)
+                .success(function (response) {
+                    vm.widget=response;
+                    $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ vm.widget._id)
+                });
         }
 
 
