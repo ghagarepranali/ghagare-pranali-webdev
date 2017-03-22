@@ -1,21 +1,22 @@
-<nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
-    <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="pull-right wbdev-margin-right-fix">
-            <a class="navbar-brand"
-               ng-click="model.updateWidget(model.widget)">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a ng-click="model.updateWidget(model.widget)">
                 <span class="glyphicon glyphicon-ok-sign"></span>
             </a>
         </div>
-        <div class="navbar-header">
-            <a class="navbar-brand"
-               href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}/?status=new">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
-            <a class="navbar-brand wbdev-margin-left-fix">Seach Flickr</a>
         </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="">Seach Flickr</a>
+            </div>
+
     </div>
 </nav>
-
 <div class="container-fluid wbdev-container-side-space-fix">
     <div class="row">
         <div class="col-xs-12">
@@ -46,13 +47,9 @@
     </div>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
-    <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="pull-right wbdev-margin-right-fix">
-            <a class="navbar-brand"
-               href="#/user/{{model.uid}}">
-                <span class="glyphicon glyphicon-user"></span>
-            </a>
-        </div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid navbar-text pull-right">
+        <a class="glyphicon glyphicon-user" href="#/user/{{model.userId}}"></a>
     </div>
 </nav>

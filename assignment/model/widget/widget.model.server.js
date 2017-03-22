@@ -41,7 +41,6 @@ module.exports = function () {
   }
   
   function findAllWidgetsForPage(pageId) {
-      console.log("page id is "+ pageId);
       return model.pageModel
           .findPageById(pageId)
           .then(function (page) {

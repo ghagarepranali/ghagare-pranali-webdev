@@ -1,12 +1,11 @@
 module.exports = function () {
     var model=null;
-    console.log("in pages");
     var mongoose = require("mongoose");
     var PageSchema = require('./page.schema.server')();
     var PageModel = mongoose.model('PageModel', PageSchema);
-    //console.log(PageSchema);
     var q = require("q");
     mongoose.Promise = q.Promise;
+
     var api = {
         "createPage"            :createPage,
         "findPageByWebsiteId"   :findPageByWebsiteId,
@@ -18,8 +17,6 @@ module.exports = function () {
     return api;
 
     function createPage(websiteId, page) {
-        console.log(page);
-
         return PageModel
             .create(page)
             .then(function (page) {
@@ -45,7 +42,6 @@ module.exports = function () {
     }
     
     function findPageById(pageId) {
-        console.log(pageId);
         return PageModel.findById(pageId);
     }
     

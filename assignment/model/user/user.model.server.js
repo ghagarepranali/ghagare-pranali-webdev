@@ -1,5 +1,4 @@
 module.exports = function () {
-    console.log("in model");
 
     var mongoose = require('mongoose');
     var UserSchema = require('./user.schema.server')();
@@ -16,9 +15,6 @@ module.exports = function () {
         "deleteUser": deleteUser,
         "setModel":setModel
     };
-
-
-
     return api;
 
     function createUser(user) {
@@ -26,7 +22,6 @@ module.exports = function () {
     }
 
     function findUserById(userId) {
-        console.log(userId);
         return UserModel.findById(userId);
     }
 
@@ -40,13 +35,7 @@ module.exports = function () {
 
     function updateUser(userId, updatedUser) {
         return UserModel.update({_id: userId},
-            {$set:updatedUser});/*{$set:{
-         username: user.username,
-         email: user.email,
-         firstName: user.firstName,
-         lastName: user.lastName,
-         websites: user.websites
-         }});*/
+            {$set:updatedUser});
     }
 
     function deleteUser(userId) {

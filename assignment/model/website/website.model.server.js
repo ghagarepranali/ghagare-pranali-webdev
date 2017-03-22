@@ -20,10 +20,6 @@ module.exports = function () {
 
 
     function createWebsiteForUser(userId, website) {
-       /* return WebsiteModel.create(website)
-            .then(function (newWebsite) {
-                return WebsiteModel.findByIdAndUpdate(newWebsite._id, {_user: userId}, {new: true}).exec();
-            })*/
         return WebsiteModel
             .create(website)
             .then(
@@ -32,7 +28,6 @@ module.exports = function () {
                         .findUserById(userId)
                         .then(function (user) {
                             website._user = user._id;
-                            console.log(user._id);
                             user.websites.push(website._id);
                             website.save();
                             user.save();
