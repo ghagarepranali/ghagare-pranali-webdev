@@ -3,13 +3,15 @@
         .module("FoodAppMaker")
         .controller("ReviewController", ReviewController);
 
-    function ReviewController(UserService, ReviewService, $routeParams, $http) {
+    function ReviewController(UserService, ReviewService, $routeParams, $http, currentUser) {
         var vm = this;
         vm.error = null;
         vm.message = null;
         vm.userId = $routeParams.uid;
         vm.rid = $routeParams.rid;
         vm.submitReview = submitReview;
+        vm.currentUser = currentUser;
+        vm.logout= logout;
 
         function init() {
 
@@ -53,6 +55,14 @@
                 }, function (err) {
                     vm.error = "Error in review submission. Try again later";
                 })
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
         }
         
 

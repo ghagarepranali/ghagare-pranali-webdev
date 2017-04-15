@@ -3,11 +3,12 @@
         .module("FoodAppMaker")
         .controller("AdminController", AdminController);
 
-    function AdminController($http, ReviewService, adminUser) {
+    function AdminController($http, ReviewService, adminUser, UserService, $location) {
         var vm = this;
         vm.adminUser = adminUser;
         vm.approveReview = approveReview;
         vm.declineReview = declineReview;
+        vm.logout = logout;
 
         function init() {
             //console.log(vm.adminUser);
@@ -44,6 +45,15 @@
                         .findPendingCriticReviews(vm.adminUser._id)
                         .success(displayPendingReviews);
                 })
+        }
+
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
         }
     }
 

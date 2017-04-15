@@ -1,20 +1,33 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <a ng-click="model.logout()" class="navbar-brand navbar-right">Logout</a>
-    <a class="navbar-brand navbar-right" href="#/user/{{model.userId}}" >
-        Hi, {{model.adminUser.username}}</a>
+    <a class="navbar-brand navbar-right" >
+    Hi, {{model.adminUser.username}}</a>
 </nav>
 
-<div ng-repeat="review in model.pendingReviews">
-    <div>
-        <span>
-{{review.description}}
-            </span>
-        <span>{{review.username}}</span>
+<ul class="list-group">
+<li ng-repeat="review in model.pendingReviews" class="list-group-item">
+    <div class="row">
 
-        <img ng-src="{{review.recipeImg}}"/>
-        <span>{{review.recipeName}}</span>
+    <div class="col-xs-12 col-md-4"><img ng-src="{{review.recipeImg}}"/></div>
+
+        <div class="col-sm-8">
+        <label>Review Content : </label>
+
+{{review.description}}</div>
+        <div class="col-sm-8">
+        <label>Reviewed By : </label>
+        {{review.username}}
+        </div>
+
+        <div class="col-sm-8">
+        <label>Recipe Name:</label>
+        {{review.recipeName}}
+        </div>
+        <div>
         <a ng-click="model.approveReview(review)" class="btn btn-primary">Approve review and turn user to a critic</a>
         <a ng-click="model.declineReview(review)" class="btn btn-primary">Decline review</a>
-    </div>
+        </div>
 
 </div>
+</li>
+</ul>

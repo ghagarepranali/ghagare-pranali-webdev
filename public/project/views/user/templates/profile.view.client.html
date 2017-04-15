@@ -115,18 +115,9 @@
     </div>
 
     <div class="col-sm-8" ng-show="model.showReviews">
-        <input ng-model="model.search.user" type="text" placeholder="searchUser" class="form-control"/>
-        <a ng-click="model.searchUser(model.search.user)" class="btn btn-block btn-primary"> search user</a>
 
-        <div ng-repeat="userResult in model.userSearchResults">
-            <ul>
-                <li>
-                    {{userResult.username}}
-                    <a ng-click="model.followUser(userResult._id)" class="btn btn-block">Follow</a>
-                </li>
-            </ul>
-        </div>
     </div>
+
 
 
     <div class="col-sm-8" ng-show="model.showFollowing">

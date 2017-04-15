@@ -1,6 +1,6 @@
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
-    <a class="navbar-brand" href="#/user/{{model.user._id}}/search">Munchkins</a>
+    <a class="navbar-brand" href="#/user/{{model.userId}}/search">Munchkins</a>
 
 
     <a ng-hide="{{model.currentUser != null}}" class="nav navbar-brand navbar-right"
@@ -42,6 +42,7 @@
     </div>
 <li ng-repeat="list in model.reviewList" class="list-group-item">
     <div class="row">
+
         <div class="col-xs-11 col-sm-6">
                 {{list.description}}
         </div>
