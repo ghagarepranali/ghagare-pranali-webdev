@@ -1,25 +1,14 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#/home">Munchkins</a>
-        </div>
-        <div class="navbar-form navbar-left">
-            <a class="btn btn-primary" href="#/user/{{model.user._id}}/search"> search </a>
-        </div>
-    </div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+       <a class="navbar-brand" href="#/user/{{model.user._id}}/search">Munchkins</a>
 
-    <div ng-hide="{{model.currentUser != null}}">
-        <div class="nav navbar-text navbar-right">
-            <a href="#/register">Register</a> <a href="#/login">Login</a>
-        </div>
-    </div>
-    <div ng-show="{{model.currentUser}}">
-        <div class="nav navbar-text navbar-right">
-            <a href="#/user/{{model.userId}}">Hi, {{model.currentUser.username}}</a>
-            <a ng-click="model.logout()">Logout</a>
-        </div>
-    </div>
-</nav>
+        <a ng-hide="{{model.currentUser != null}}" href="#/register" class="navbar-brand navbar-right">Register</a>
+        <a ng-hide="{{model.currentUser != null}}" href="#/login" class="navbar-brand navbar-right">Login</a>
+
+        <a ng-show="{{model.currentUser}}"  ng-click="model.logout()" class="navbar-brand navbar-right">Logout</a>
+        <a ng-show="{{model.currentUser}}" class="navbar-brand navbar-right" href="#/user/{{model.userId}}" >
+                Hi, {{model.currentUser.username}}</a>
+
+  </nav>
 
 <div class="container-fluid">
 
@@ -30,7 +19,7 @@
         {{model.message}}
     </div>
 
-    <div class="col-sm-4 hidden-xs">
+    <div class="col-sm-4">
         <ul class="list-group">
             <li class="list-group-item">
                 <div class="row">

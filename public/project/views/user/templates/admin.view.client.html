@@ -1,4 +1,8 @@
-
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <a ng-click="model.logout()" class="navbar-brand navbar-right">Logout</a>
+    <a class="navbar-brand navbar-right" href="#/user/{{model.userId}}" >
+        Hi, {{model.adminUser.username}}</a>
+</nav>
 
 <div ng-repeat="review in model.pendingReviews">
     <div>

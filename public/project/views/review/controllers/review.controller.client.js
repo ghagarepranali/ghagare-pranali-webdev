@@ -49,7 +49,9 @@
             };
             ReviewService.submitReview(vm.userId, vm.rid, reviewNew)
                 .success(function () {
-                    console.log("reviw");
+                    vm.message = "Review is submitted successfully";
+                }, function (err) {
+                    vm.error = "Error in review submission. Try again later";
                 })
         }
         

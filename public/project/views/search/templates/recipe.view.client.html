@@ -1,27 +1,15 @@
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="row container-fluid">
-        <div>
-
-            <a class="navbar-brand" href="#/home">Munchkins</a>
-        </div>
+    <a class="navbar-brand" href="#/user/{{model.user._id}}/search">Munchkins</a>
 
 
-        <div class="navbar-form navbar-left">
-            <a class="btn btn-primary" href="#/user/{{model.userId}}/search"> search </a>
-        </div>
-        <div ng-hide="{{model.currentUser != null}}">
-            <div class="nav navbar-text navbar-right">
-                <a href="#/register">Register</a> <a href="#/login">Login</a>
-            </div>
-        </div>
-        <div ng-show="{{model.currentUser}}">
-            <div class="nav navbar-text navbar-right">
-                <a href="#/user/{{model.userId}}">Hi, {{model.currentUser.username}}</a>
-                <a ng-click="model.logout()">Logout</a>
-            </div>
-        </div>
-    </div>
+    <a ng-hide="{{model.currentUser != null}}" class="nav navbar-brand navbar-right"
+        href="#/register">Register</a>
+    <a ng-hide="{{model.currentUser != null}}" href="#/login" class="nav navbar-brand navbar-right">Login</a>
+     <a ng-show="{{model.currentUser}}" href="#/user/{{model.userId}}" class="nav navbar-barnd navbar-right">
+        Hi, {{model.currentUser.username}}</a>
+       <a ng-show="{{model.currentUser}}" ng-click="model.logout()" class="nav navbar-brand navbar-right">Logout</a>
+
 </nav>
 <div class="row thumbnail-style">
     <div class="col-xs-12 col-md-4"><img ng-src="{{model.recipe.image}}"></div>
@@ -32,9 +20,9 @@
         </div>
 
 
-        <div ng-repeat="ingrediant in model.recipe.ingredientLines">
+        <div ng-repeat="ingredient in model.recipe.ingredientLines">
             <ul>
-                <li>{{ingrediant}}</li>
+                <li>{{ingredient}}</li>
             </ul>
         </div>
         <div>
