@@ -43,6 +43,18 @@ module.exports = function () {
   function findAllWidgetsForPage(pageId) {
       return model.pageModel
           .findPageById(pageId)
+          .then(function (page){
+              var widgets = page.widgets;
+              return widgets;
+             // return widgetsOfPg;
+          });
+     /* return WidgetModel.find({_page: pageId})
+          .exec()
+          .then(function (widgets) {
+              return widgets;
+          });*/
+     /* return model.pageModel
+          .findPageById(pageId)
           .then(function (page) {
               var widgetsOfPg = page.widgets;
               var noOfWidgets = widgetsOfPg.length;
@@ -51,10 +63,10 @@ module.exports = function () {
               return getWidgetsRecursively(noOfWidgets, widgetsOfPg, widgetCollectnForPg);
           }, function (err) {
               return err;
-          });
+          });*/
   }
   
-  function getWidgetsRecursively(noOfWidgets, widgetsOfPg, widgetCollectnForPg) {
+  /*function getWidgetsRecursively(noOfWidgets, widgetsOfPg, widgetCollectnForPg) {
       if(noOfWidgets == 0){
           return widgetCollectnForPg;
       }
@@ -66,10 +78,15 @@ module.exports = function () {
           }, function (err) {
               res.sendStatus(404);
           })
-  }
+  }*/
   
   function findWidgetById(widgetId) {
-      return WidgetModel.findById(widgetId).select('-__v');
+      return WidgetModel.findById(widgetId)
+          .exec()
+          .then(function (widget) {
+              return widget;
+          });
+      //return WidgetModel.findById(widgetId).select('-__v');
   }
 
   function updateWidget(widgetId, widget) {
@@ -90,6 +107,7 @@ module.exports = function () {
           .then(function (page) {
               page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0]);
               page.save();
+              page.markModified(page.widgets);
               return 200;
           }, function (err) {
               return err;

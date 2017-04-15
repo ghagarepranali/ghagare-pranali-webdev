@@ -1,0 +1,33 @@
+
+input {
+    margin-bottom: 5px;
+}
+body {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    overflow-x: hidden;
+    padding-left: 60px;
+}
+
+
+
+.navbar-default .navbar-text {
+    color: black;
+}
+.container-fluid{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    min-width: 400px
+}
+
+.btn {
+    margin-top: 5px;
+}
+.navbar-text {
+    text-decoration: none;
+}
+.thumbnail-style {
+    margin-top:20px;
+}

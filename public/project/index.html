@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="FoodAppMaker">
 <head>
-    <meta charset="UTF-8">
-    <title>Project Home Page</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!-- CONTROLLERS -->
+    <script src="views/search/controllers/search.food.controller.client.js"></script>
+    <script src="views/user/controllers/login.controller.client.js"></script>
+    <script src="views/user/controllers/register.controller.client.js"></script>
+    <script src="views/user/controllers/profile.controller.client.js"></script>
+    <script src="views/search/controllers/recipe.controller.client.js"></script>
+    <script src="views/user/controllers/admin.controller.client.js"></script>
+    <script src="views/review/controllers/review.controller.client.js"></script>
+
+    <!-- SEVRICES -->
+    <script src="services/user.service.client.js"></script>
+    <script src="services/recipe.service.client.js"></script>
+    <script src="services/review.service.client.js"></script>
+
+
 </head>
 <body>
-    <h1>Project Home Page</h1>
+    <div ng-view></div>
 </body>
 </html>

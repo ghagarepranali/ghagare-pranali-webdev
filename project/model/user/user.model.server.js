@@ -1,6 +1,6 @@
 module.exports = function () {
 
-   // var mongoose = require('mongoose');
+    // var mongoose = require('mongoose');
 
     var mongoose = require('mongoose');
     var q = require('q');
@@ -16,7 +16,11 @@ module.exports = function () {
         "findUserByCredentials":findUserByCredentials,
         "updateUser": updateUser,
         "deleteUser": deleteUser,
-        "setModel":setModel
+        "setModel":setModel,
+        "findAllUsers": findAllUsers,
+        "followUser": followUser,
+        "addRecipeToUser": addRecipeToUser,
+        "searchUser":searchUser
     };
     return api;
 
@@ -30,7 +34,7 @@ module.exports = function () {
     }
 
     function findUserByCredentials(username, password) {
-        return UserModel.find({"username": username, "password": password});
+        return UserModel.findOne({"username": username, "password": password});
     }
 
     function findUserByUsername(username) {
@@ -51,7 +55,37 @@ module.exports = function () {
 
     }
 
+    function findAllUsers() {
+        return UserModel.find();
+    }
+
+    function followUser(userId, fwUser) {
+        return UserModel.update({_id: userId}, {$addToSet: {following: fwUser}})
+            .exec()
+            .then(function () {
+                UserModel.update({_id: fwUser._id}, {$addToSet: {followers: userId}})
+                    .exec();
+            });
+    }
+
+    function addRecipeToUser(userId, recipe) {
+        console.log("here");
+        return UserModel.findUserById(userId)
+            .then(function (user) {
+                user.likes.push(recipe._id);
+                user.save();
+            });
+        //return UserModel.update({_id: user._id}, {$addToSet: {likes: recipe._id}});
+
+    }
+
     function setModel(_model) {
         model = _model;
     }
+
+function searchUser(searchQuery) {
+    return UserModel.find({$and:[{"username":{'$regex' : '^'+searchQuery, '$options' : 'i'}}, {"roles" : {$nin: ['ADMIN']}}]})
+}
+
+
 };

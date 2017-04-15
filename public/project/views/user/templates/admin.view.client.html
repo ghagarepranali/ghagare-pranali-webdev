@@ -1,0 +1,16 @@
+
+
+<div ng-repeat="review in model.pendingReviews">
+    <div>
+        <span>
+{{review.description}}
+            </span>
+        <span>{{review.username}}</span>
+
+        <img ng-src="{{review.recipeImg}}"/>
+        <span>{{review.recipeName}}</span>
+        <a ng-click="model.approveReview(review)" class="btn btn-primary">Approve review and turn user to a critic</a>
+        <a ng-click="model.declineReview(review)" class="btn btn-primary">Decline review</a>
+    </div>
+
+</div>

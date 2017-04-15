@@ -1,0 +1,48 @@
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="row container-fluid">
+        <div>
+
+            <a class="navbar-brand" href="#/home">Munchkins</a>
+        </div>
+
+
+        <div class="navbar-form navbar-left">
+            <a class="btn btn-primary" href="#/user/{{model.userId}}/search"> search </a>
+        </div>
+        <div ng-hide="{{model.currentUser != null}}">
+            <div class="nav navbar-text navbar-right">
+                <a href="#/register">Register</a> <a href="#/login">Login</a>
+            </div>
+        </div>
+        <div ng-show="{{model.currentUser}}">
+            <div class="nav navbar-text navbar-right">
+                <a href="#/user/{{model.userId}}">Hi, {{model.currentUser.username}}</a>
+                <a ng-click="model.logout()">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="row thumbnail-style">
+    <div class="col-xs-12 col-md-4"><img ng-src="{{model.recipe.image}}"></div>
+    <div class="col-xs-6 col-md-8">
+        <div>
+                {{model.recipe.label}}
+            <a class="glyphicon glyphicon-star-empty" ng-click="model.addToFav(model.recipe)"></a>
+        </div>
+
+
+        <div ng-repeat="ingrediant in model.recipe.ingredientLines">
+            <ul>
+                <li>{{ingrediant}}</li>
+            </ul>
+        </div>
+        <div>
+            <a class="btn btn-primary" ng-click="model.writeReview(model.recipe)">
+                Write a review
+            </a>
+        </div>
+    </div>
+</div>
+
+

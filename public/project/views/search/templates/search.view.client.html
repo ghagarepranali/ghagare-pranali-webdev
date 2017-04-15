@@ -1,0 +1,20 @@
+<div class="row thumbnail-style">
+    <div ng-repeat="result in model.results.hits">
+        <div class="col-sm-6 col-md-4">
+
+            <a ng-click="model.viewRecipe(result.recipe.uri)">
+                <div class="thumbnail">
+
+
+                    <img ng-src="{{result.recipe.image}}" alt="Recipe Image">
+                    <div class="caption">
+                        <h5 align="center">{{result.recipe.label}}</h5>
+
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>

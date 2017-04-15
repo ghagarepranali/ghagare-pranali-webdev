@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid">
+
+        <div class="col-sm-12">
+            <ul class="navbar-text pull-right">
+                <a href="#/register">
+                    Register
+                </a>
+
+                <a href="#/login">
+                    Login
+                </a>
+
+            </ul>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/home">Munchkins</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <h1>Login</h1>
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+    <label for="username">Username</label>
+    <input ng-model="user.username"
+           id="username"
+           class="form-control"
+           placeholder="john123"/>
+
+    <label for="password">Password</label>
+    <input ng-model="user.password"
+           id="password"
+           class="form-control"
+           type="password"
+           placeholder="req4321"/>
+
+    <a href="/user/auth/google" class="btn btn-danger btn-block">
+        <span class="fa fa-google-plus"></span>
+        Google
+    </a>
+
+    <a ng-click="model.login(user)" class="btn btn-primary btn-block">Login</a>
+    <a href="#/register" class="btn btn-success btn-block">Register</a>
+</div>

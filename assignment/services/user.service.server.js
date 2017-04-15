@@ -5,8 +5,6 @@ module.exports = function (app, userModel) {
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
 
-
-
     function createUser(req, res) {
         var user = req.body;
         var newUser = {
@@ -112,4 +110,5 @@ module.exports = function (app, userModel) {
                 res.sendStatus(404);
             });
     }
+
 };

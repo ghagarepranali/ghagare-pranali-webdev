@@ -1,0 +1,169 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/home">Munchkins</a>
+        </div>
+        <div class="navbar-form navbar-left">
+            <a class="btn btn-primary" href="#/user/{{model.user._id}}/search"> search </a>
+        </div>
+    </div>
+
+    <div ng-hide="{{model.currentUser != null}}">
+        <div class="nav navbar-text navbar-right">
+            <a href="#/register">Register</a> <a href="#/login">Login</a>
+        </div>
+    </div>
+    <div ng-show="{{model.currentUser}}">
+        <div class="nav navbar-text navbar-right">
+            <a href="#/user/{{model.userId}}">Hi, {{model.currentUser.username}}</a>
+            <a ng-click="model.logout()">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+    <div class="alert alert-success" ng-show="model.message">
+        {{model.message}}
+    </div>
+
+    <div class="col-sm-4 hidden-xs">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <a ng-click="model.setActiveTab('updateProfile')">
+                            Update Profile</a>
+                    </div>
+
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <a ng-click="model.setActiveTab('showReviews')">
+                            Reviews</a>
+                    </div>
+
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <a ng-click="model.setActiveTab('showLikes')">
+                            Likes</a>
+                    </div>
+
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <a ng-click="model.setActiveTab('showSearchUsers')">
+                            Search For users to follow</a>
+                    </div>
+
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <a ng-click="model.setActiveTab('showFollowing')">
+                            Following</a>
+                    </div>
+
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <a ng-click="model.setActiveTab('showFollowers')">
+                            Followers</a>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-8" ng-show="model.showUpdatePage">
+    <label for="username">Username</label>
+    <input ng-model="model.user.username"
+           id="username"
+           type="text"
+           placeholder="Username"
+           class="form-control"/>
+
+    <label for="email">Email</label>
+    <input ng-model="model.user.email"
+           id="email"
+           type="email"
+           placeholder="Email Id"
+           class="form-control"/>
+
+    <label for="firstName">First Name</label>
+    <input ng-model="model.user.firstName"
+           id="firstName"
+           type="text"
+           placeholder="First Name"
+           class="form-control"/>
+
+    <label for="lastName">Last Name</label>
+    <input ng-model="model.user.lastName"
+           id="lastName"
+           type="text"
+           placeholder="Last Name"
+           class="form-control"/>
+
+    <a ng-click="model.updateUsr(model.user)" class="btn btn-block btn-success">Update</a>
+    <a ng-click="model.deleteUser()" class="btn btn-block btn-primary">Delete</a>
+    <a ng-click="model.logout()" class="btn btn-danger btn-block">Logout</a>
+</div>
+
+    <div class="col-sm-8" ng-show="model.showReviews">
+        <input ng-model="model.search.user" type="text" placeholder="searchUser" class="form-control"/>
+        <a ng-click="model.searchUser(model.search.user)" class="btn btn-block btn-primary"> search user</a>
+
+        <div ng-repeat="userResult in model.userSearchResults">
+            <ul>
+                <li>
+                    {{userResult.username}} <a ng-click="model.followUser(userResult._id)" class="btn btn-block">Follow</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-sm-8" ng-show="model.showFollowing">
+        <div ng-repeat="lifg in model.listOfFollowing">
+
+               <h3>     {{lifg.username}}</h3>
+
+        </div>
+    </div>
+
+    <div class="col-sm-8" ng-show="model.showFollowers">
+         <div ng-repeat="lif in model.listOfFollowers">
+             <h3>
+                    {{lif.username}}</h3>
+
+        </div>
+    </div>
+
+
+    <div class="col-sm-8" ng-show="model.showSearchUsers">
+    <input ng-model="model.search.user" id="searchUser" type="text" placeholder="searchUser" class="form-control"/>
+    <a ng-click="model.searchUser(model.search.user)" class="btn btn-block btn-primary"> search user</a>
+
+    <div ng-repeat="userResult in model.userSearchResults">
+        <ul>
+            <li>
+                {{userResult.username}} <a ng-click="model.followUser(userResult._id)" class="btn btn-block">Follow</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+
