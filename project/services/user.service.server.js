@@ -19,6 +19,7 @@ module.exports = function (app, userModel) {
     app.post('/api/user/isAdmin', isAdmin);
     app.post("/api/user/logout", logout);
     app.get("/api/search/user/:userQuery", searchUser);
+    app.put("/api/user/unfollow/:userId", unfollowUser);
     //app.get("/api/display/reviews/:userId", displayReviews);
 
 
@@ -187,6 +188,21 @@ module.exports = function (app, userModel) {
                 res.sendStatus(500);
             })
     }
+
+    function unfollowUser(req, res) {
+        var userId = req.params.userId;
+        var unFwlUser = req.body;
+        userModel
+            .unfollowUser(userId, unFwlUser)
+            .then(function (response) {
+                if (response.nModified == 1) {
+                    res.sendStatus(200);
+                }
+            }, function (err) {
+                res.sendStatus(500);
+            })
+    }
+
     function serializeUser(user, done) {
         done(null, user);
     }

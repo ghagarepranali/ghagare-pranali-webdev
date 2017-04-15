@@ -18,7 +18,7 @@ module.exports = function () {
         likes:[{type: mongoose.Schema.Types.ObjectId, ref: 'RecipeModel'}],
         reviewed:[{type: mongoose.Schema.Types.ObjectId, ref: 'ReviewModel'}],
         followers: [{type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'}],
-        following: [{type: mongoose.Schema.Types.ObjectId, ref: 'RecipeModel'}],
+        following: [{type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'}],
         roles: {type:String, default:'USER', enum: ['USER', 'ADMIN', 'CRITIC']},
         dateCreated: {type:Date, default: Date.now()}
     },{collection: 'project.food.users'});

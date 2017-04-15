@@ -20,7 +20,8 @@ module.exports = function () {
         "findAllUsers": findAllUsers,
         "followUser": followUser,
         "addRecipeToUser": addRecipeToUser,
-        "searchUser":searchUser
+        "searchUser":searchUser,
+        "unfollowUser": unfollowUser
     };
     return api;
 
@@ -85,6 +86,21 @@ module.exports = function () {
 
 function searchUser(searchQuery) {
     return UserModel.find({$and:[{"username":{'$regex' : '^'+searchQuery, '$options' : 'i'}}, {"roles" : {$nin: ['ADMIN']}}]})
+}
+
+function unfollowUser(userId, unFwUser) {
+    return UserModel
+        .findById(userId)
+        .then(function (user1) {
+            user1.following.splice(user1.following.indexOf(unFwUser._id), 1);
+            user1.save();
+            UserModel
+                .findById(unFwUser._id)
+                .then(function (user2) {
+                    user2.followers.splice(user2.followers.indexOf(userId), 1);
+                    user2.save();
+                });
+        });
 }
 
 

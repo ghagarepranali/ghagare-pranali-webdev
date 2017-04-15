@@ -10,8 +10,10 @@
 
                 <a class="navbar-brand" href="#/home">Munchkins</a>
 
+
 </nav>
 <div class="container-fluid">
+
     <h1>Register</h1>
     <div class="alert alert-success" ng-show="model.message">
         {{model.message}}
@@ -21,7 +23,9 @@
             id="username"
             type="text"
             class="form-control"
-            placeholder="username"/>
+            placeholder="username"
+            required class="form-control"/>
+    <span ng-show="form1.$submitted && form1.username.$error.required">Username is required</span>
     <label for="password">Password</label>
     <input ng-model="user.password"
            id="password"

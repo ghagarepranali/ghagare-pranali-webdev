@@ -9,7 +9,8 @@
             "findPendingCriticReviews": findPendingCriticReviews,
             "approveReview": approveReview,
             "declineReview": declineReview,
-            "findReviewsByRecipeId": findReviewsByRecipeId
+            "findReviewsByRecipeId": findReviewsByRecipeId,
+            "findReviewsByUserId": findReviewsByUserId
         };
 
         return api;
@@ -24,9 +25,9 @@
             return $http.get("/api/admin/"+adminId+"/pending/requests");
         }
 
-        function approveReview(review) {
+        function approveReview(review, adminId) {
             console.log("in app service");
-            return $http.put("/api/admin/approve/review", review);
+            return $http.put("/api/admin/approve/review/"+adminId, review);
         }
 
         function declineReview(reviewId) {
@@ -36,6 +37,10 @@
 
         function findReviewsByRecipeId(recipeId) {
             return $http.get("/api/review/list/"+recipeId);
+        }
+
+        function findReviewsByUserId(userId) {
+            return $http.get("/api/review/list/for/"+userId);
         }
 
     }

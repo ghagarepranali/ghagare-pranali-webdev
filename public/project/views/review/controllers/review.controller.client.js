@@ -3,7 +3,7 @@
         .module("FoodAppMaker")
         .controller("ReviewController", ReviewController);
 
-    function ReviewController(UserService, ReviewService, $routeParams, $http, currentUser) {
+    function ReviewController(UserService, ReviewService, $routeParams, $http, currentUser, $location) {
         var vm = this;
         vm.error = null;
         vm.message = null;

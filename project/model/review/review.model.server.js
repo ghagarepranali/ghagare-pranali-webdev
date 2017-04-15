@@ -16,7 +16,8 @@ module.exports = function () {
         "findPendingCriticReviews": findPendingCriticReviews,
         "approveReview": approveReview,
         "declineReview": declineReview,
-        "findReviewsByRecipeId": findReviewsByRecipeId
+        "findReviewsByRecipeId": findReviewsByRecipeId,
+        "findReviewsByUserId": findReviewsByUserId
     };
 
     return api;
@@ -54,18 +55,35 @@ module.exports = function () {
             })
     }
 
-    function approveReview(review) {
-       /* console.log("in review model");
-        return ReviewModel.update({_id: review._id}, {$set: {isCritic: true}})
-            .exec()
-            .then(function () {*/
-               return  model.userModel.findUserById(review.userId)
+    function approveReview(review, adminId) {
+        return model.userModel
+            .findUserById(adminId)
+            .then(function (user) {
+                if(user.roles=="ADMIN"){
+                    return ReviewModel.update({userId:review.userId},{$set:{isCritic : true}}, { multi: true } )
+                        .then(function (response) {
+                             model.userModel.findUserById(review.userId)
+                                .then(function (user) {
+                                    user.roles="CRITIC";
+                                    user.save();
+
+                                });
+
+                        });
+                }
+            });
+
+        /* console.log("in review model");
+         return ReviewModel.update({_id: review._id}, {$set: {isCritic: true}})
+             .exec()
+             .then(function () {*/
+              /* return  model.userModel.findUserById(review.userId)
                     .then(function (user) {
                         user.roles = 'CRITIC';
                         user.save();
-                      /*  console.log("user is found "+ user);
+                      /!*  console.log("user is found "+ user);
                              model.userModel.updateRoleToCritic(user).exec();
-                       */
+                       *!/
                       return ReviewModel.find({userId: user._id})
                        .exec()
                        .then(function () {
@@ -81,7 +99,7 @@ module.exports = function () {
 
                     }, function (err) {
                         
-                    });
+                    });*/
         /*   }, function (err) {
                 return err;
             })*/
@@ -100,5 +118,9 @@ module.exports = function () {
 
     function findReviewsByRecipeId(recipeId) {
         return ReviewModel.find({"recipeId": recipeId});
+    }
+
+    function findReviewsByUserId(userId) {
+        return ReviewModel.find({"userId": userId});
     }
 };

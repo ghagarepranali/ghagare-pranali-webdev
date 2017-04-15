@@ -6,9 +6,10 @@
 
 <ul class="list-group">
 <li ng-repeat="review in model.pendingReviews" class="list-group-item">
-    <div class="row">
+    <div class="row thumbnail-style">
 
-    <div class="col-xs-12 col-md-4"><img ng-src="{{review.recipeImg}}"/></div>
+    <div class="col-xs-12 col-md-4">
+        <img ng-src="{{review.recipeImg}}"/></div>
 
         <div class="col-sm-8">
         <label>Review Content : </label>
@@ -25,7 +26,7 @@
         </div>
         <div>
         <a ng-click="model.approveReview(review)" class="btn btn-primary">Approve review and turn user to a critic</a>
-        <a ng-click="model.declineReview(review)" class="btn btn-primary">Decline review</a>
+        <a ng-click="model.declineReview(review)" class="btn btn-danger">Decline review</a>
         </div>
 
 </div>

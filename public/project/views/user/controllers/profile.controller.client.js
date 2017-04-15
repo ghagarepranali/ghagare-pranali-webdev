@@ -17,6 +17,9 @@
         vm.displayFollowers =displayFollowers;
         vm.logout = logout;
         vm.viewProfile =viewProfile;
+        vm.unfollowUser = unfollowUser;
+        vm.displayReviews = displayReviews;
+
        // vm.otherProfile=false;
 
         //vm.displayLikes = displayLikes;
@@ -98,6 +101,14 @@ console.log("initial value "+ vm.otherProfile);
                 });
 
         }
+
+        function unfollowUser(unFwUser) {
+            UserService
+                .unfollowUser(vm.userId, unFwUser)
+                .success(function () {
+                    vm.message = "Successfully unfollowed";
+                })
+        }
         
         function searchFood(food) {
             vm.food = food;
@@ -130,6 +141,7 @@ console.log("initial value "+ vm.otherProfile);
                 vm.showSearchUsers = false;
                 vm.showFollowing = false;
                 vm.showFollowers = false;
+                displayReviews();
 
             } else if(parameter == "showLikes"){
                 vm.showUpdatePage = false;
@@ -182,6 +194,7 @@ console.log("initial value "+ vm.otherProfile);
                     .then(function (user) {
                         console.log("the user is "+ user);
                         vm.listOfFollowers.push(user.data);
+
                     })
             }
         }
@@ -195,6 +208,7 @@ console.log("initial value "+ vm.otherProfile);
                     .findUserById(vm.user.following[i])
                     .then(function (user) {
                         vm.listOfFollowing.push(user.data);
+
                     })
             }
         }
@@ -225,6 +239,25 @@ console.log("initial value "+ vm.otherProfile);
             }
 
            // console.log("the likes of users are :"+vm.likesForUser);
+        }
+        
+        
+        function displayReviews() {
+            //vm.listOfReviewsForUser = [];
+            ReviewService
+                .findReviewsByUserId(vm.userId)
+                .then(function (response) {
+                    vm.listOfReviewsForUser = response.data;
+                });
+            //for(var i=0; i<vm.user.following; i++){
+           /* for(var i in vm.user.following){
+                UserService
+                    .findUserById(vm.user.following[i])
+                    .then(function (user) {
+                        vm.listOfFollowing.push(user.data);
+
+                    })
+            }*/
         }
 
         function logout() {

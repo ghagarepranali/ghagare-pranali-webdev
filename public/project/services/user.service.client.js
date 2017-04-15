@@ -18,7 +18,8 @@
             "login": login,
             "isAdmin": isAdmin,
             "logout": logout,
-            "searchUser":searchUser
+            "searchUser":searchUser,
+            "unfollowUser": unfollowUser
          };
         return api;
 
@@ -93,7 +94,9 @@
        /* function displayReviews(userId) {
             return $http.get("/api/display/reviews/"+userId);
         }*/
-
+        function unfollowUser(myId, unFwUser) {
+            return $http.put("/api/user/unfollow/"+myId, unFwUser);
+        }
 
     }
 })();

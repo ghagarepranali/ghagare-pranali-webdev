@@ -27,7 +27,7 @@
         function approveReview(review) {
             console.log("in app control "+ review);
             ReviewService
-                .approveReview(review)
+                .approveReview(review, vm.adminUser._id)
                 .success(function () {
                      console.log("updated and calling pending");
                     ReviewService
