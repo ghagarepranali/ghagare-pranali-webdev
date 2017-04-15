@@ -8,7 +8,8 @@
             "submitReview": submitReview,
             "findPendingCriticReviews": findPendingCriticReviews,
             "approveReview": approveReview,
-            "declineReview": declineReview
+            "declineReview": declineReview,
+            "findReviewsByRecipeId": findReviewsByRecipeId
         };
 
         return api;
@@ -31,6 +32,10 @@
         function declineReview(reviewId) {
             console.log("in delete service"+ reviewId);
             return $http.delete("/api/admin/decline/review/"+ reviewId);
+        }
+
+        function findReviewsByRecipeId(recipeId) {
+            return $http.get("/api/review/list/"+recipeId);
         }
 
     }

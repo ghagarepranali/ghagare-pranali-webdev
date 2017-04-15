@@ -6,7 +6,7 @@
     <a ng-hide="{{model.currentUser != null}}" class="nav navbar-brand navbar-right"
         href="#/register">Register</a>
     <a ng-hide="{{model.currentUser != null}}" href="#/login" class="nav navbar-brand navbar-right">Login</a>
-     <a ng-show="{{model.currentUser}}" href="#/user/{{model.userId}}" class="nav navbar-barnd navbar-right">
+     <a ng-show="{{model.currentUser}}" href="#/user/{{model.userId}}" class="nav navbar-brand navbar-right">
         Hi, {{model.currentUser.username}}</a>
        <a ng-show="{{model.currentUser}}" ng-click="model.logout()" class="nav navbar-brand navbar-right">Logout</a>
 
@@ -26,11 +26,26 @@
             </ul>
         </div>
         <div>
-            <a class="btn btn-primary" ng-click="model.writeReview(model.recipe)">
+            <a class="btn btn-primary btn-block" ng-click="model.writeReview(model.recipe)">
                 Write a review
             </a>
         </div>
     </div>
 </div>
 
+
+<ul class="list-group thumbnail-style">
+    <div class="row">
+        <div class="col-xs-11 col-sm-6">
+            Recent Reviews
+        </div>
+    </div>
+<li ng-repeat="list in model.reviewList" class="list-group-item">
+    <div class="row">
+        <div class="col-xs-11 col-sm-6">
+                {{list.description}}
+        </div>
+    </div>
+</li>
+</ul>
 

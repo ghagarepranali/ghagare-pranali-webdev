@@ -5,6 +5,7 @@ module.exports = function (app, reviewModel) {
     app.get("/api/admin/:adminId/pending/requests", findPendingCriticReviews);
     app.put("/api/admin/approve/review", approveReview);
     app.delete("/api/admin/decline/review/:reviewId", declineReview);
+    app.get("/api/review/list/:recipeId", findReviewsByRecipeId);
 
     function submitReview(req, res) {
         var userId = req.params.userId;
@@ -58,6 +59,18 @@ console.log("in service");
             .declineReview(reviewId)
             .then(function () {
                 res.sendStatus(200);
+            }, function (err) {
+                res.sendStatus(404);
+            })
+    }
+
+    function findReviewsByRecipeId(req, res) {
+        var recipeId = req.params.recipeId;
+
+        reviewModel
+            .findReviewsByRecipeId(recipeId)
+            .then(function (response) {
+                res.json(response);
             }, function (err) {
                 res.sendStatus(404);
             })

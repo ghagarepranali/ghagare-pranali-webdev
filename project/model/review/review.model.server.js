@@ -15,7 +15,8 @@ module.exports = function () {
         "submitReview": submitReview,
         "findPendingCriticReviews": findPendingCriticReviews,
         "approveReview": approveReview,
-        "declineReview": declineReview
+        "declineReview": declineReview,
+        "findReviewsByRecipeId": findReviewsByRecipeId
     };
 
     return api;
@@ -95,5 +96,9 @@ module.exports = function () {
             }, function (err) {
                 return err;
             })
+    }
+
+    function findReviewsByRecipeId(recipeId) {
+        return ReviewModel.find({"recipeId": recipeId});
     }
 };
