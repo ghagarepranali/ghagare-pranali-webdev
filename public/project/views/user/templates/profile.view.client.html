@@ -9,9 +9,7 @@
                 Hi, {{model.currentUser.username}}</a>
 
   </nav>
-{{model.currentUser}}
-{{model.user.username == model.currentUser.username}}
-{{model.user.username != model.currentUser.username}}
+
 <div class="container-fluid">
 
     <div ng-show="model.error" class="alert alert-danger" role="alert">
@@ -26,7 +24,7 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-xs-10">
-                        <a ng-click="model.setActiveTab('updateProfile')">
+                        <a ng-click="model.setActiveTab('updateProfile')" ng-hide="{{model.otherProfile}}">
                             Update Profile</a>
                     </div>
 
@@ -80,7 +78,7 @@
         </ul>
     </div>
     <div class="col-sm-8" ng-show="model.showUpdatePage">
-        <div  ng-show="{{model.user._id == model.currentUser._id}}">
+
     <label for="username">Username</label>
     <input ng-model="model.user.username"
            id="username"
@@ -112,27 +110,8 @@
     <a ng-click="model.updateUsr(model.user)" class="btn btn-block btn-success">Update</a>
     <a ng-click="model.deleteUser()" class="btn btn-block btn-primary">Delete</a>
     <a ng-click="model.logout()" class="btn btn-danger btn-block">Logout</a>
-</div>
-        <div class="container-fluid col-sm-8" ng-show="{{model.user.username != model.currentUser.username}}">
-        <label for="username">Username</label>
-        <input ng-model="model.user.username"
-               placeholder="Username"
-               class="form-control" readonly/>
-            <label for="email">Email</label>
-            <input ng-model="model.user.email"
-                   placeholder="Email Id"
-                   class="form-control" readonly/>
 
-            <label for="firstName">First Name</label>
-            <input ng-model="model.user.firstName"
-                   placeholder="First Name"
-                   class="form-control" readonly/>
 
-            <label for="lastName">Last Name</label>
-            <input ng-model="model.otherProfile.lastName"
-                   placeholder="Last Name"
-                   class="form-control" readonly/>
-        </div>
     </div>
 
     <div class="col-sm-8" ng-show="model.showReviews">
@@ -142,7 +121,8 @@
         <div ng-repeat="userResult in model.userSearchResults">
             <ul>
                 <li>
-                    {{userResult.username}} <a ng-click="model.followUser(userResult._id)" class="btn btn-block">Follow</a>
+                    {{userResult.username}}
+                    <a ng-click="model.followUser(userResult._id)" class="btn btn-block">Follow</a>
                 </li>
             </ul>
         </div>
@@ -152,14 +132,14 @@
     <div class="col-sm-8" ng-show="model.showFollowing">
         <div ng-repeat="lifg in model.listOfFollowing">
 
-               <a href="#/user/{{lifg._id}}">{{lifg.username}}</a>
+               <a href="#/user/other/{{lifg._id}}">{{lifg.username}}</a>
 
         </div>
     </div>
 
     <div class="col-sm-8" ng-show="model.showFollowers">
          <div ng-repeat="lif in model.listOfFollowers">
-             <a href="#/user/{{lif._id}}">
+             <a href="#/user/other/{{lif._id}}">
                     {{lif.username}}</a>
 
         </div>
@@ -181,29 +161,5 @@
 </div>
 
 
-<!--<div class="container-fluid col-sm-8" ng-hide="{{model.user.username == model.currentUser.username}}">
-        <label for="username">Username</label>
-        <input ng-model="model.user.username"
-               placeholder="Username"
-               class="form-control" readonly/>
-
-        <label for="email">Email</label>
-        <input ng-model="model.user.email"
-               placeholder="Email Id"
-               class="form-control"/>
-
-        <label for="firstName">First Name</label>
-        <input ng-model="model.user.firstName"
-               placeholder="First Name"
-               class="form-control"/>
-
-        <label for="lastName">Last Name</label>
-        <input ng-model="model.otherProfile.lastName"
-               placeholder="Last Name"
-               class="form-control"/>
-
-
-
-    </div>-->
 
 

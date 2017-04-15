@@ -17,7 +17,7 @@
         vm.displayFollowers =displayFollowers;
         vm.logout = logout;
         vm.viewProfile =viewProfile;
-        vm.otherProfile=false;
+       // vm.otherProfile=false;
 
         //vm.displayLikes = displayLikes;
 
@@ -122,7 +122,7 @@ console.log("initial value "+ vm.otherProfile);
                 vm.showSearchUsers = false;
                 vm.showFollowing = false;
                 vm.showFollowers = false;
-
+              //  viewProfile();
             } else if(parameter == "showReviews"){
                 vm.showUpdatePage = false;
                 vm.showReviews = true;
@@ -235,11 +235,11 @@ console.log("initial value "+ vm.otherProfile);
                 });
         }
 
-        function viewProfile(userProfile) {
-            if(currentUser.username != userProfile.username){
+        function viewProfile() {
+            if(currentUser._id != vm.user._id){
                 vm.otherProfile = true;
             }
-            console.log("the value is "+ vm.otherProfile);
+            //console.log("the value is "+ vm.otherProfile);
         }
 
     }

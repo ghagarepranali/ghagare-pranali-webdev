@@ -1,0 +1,42 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <a class="navbar-brand" href="#/user/{{model.currentUser._id}}/search">Munchkins</a>
+
+    <a ng-hide="{{model.currentUser != null}}" href="#/register" class="navbar-brand navbar-right">Register</a>
+    <a ng-hide="{{model.currentUser != null}}" href="#/login" class="navbar-brand navbar-right">Login</a>
+
+    <a ng-show="{{model.currentUser}}"  ng-click="model.logout()" class="navbar-brand navbar-right">Logout</a>
+    <a ng-show="{{model.currentUser}}" class="navbar-brand navbar-right" href="#/user/{{model.currentUser._id}}" >
+        Hi, {{model.currentUser.username}}</a>
+
+</nav>
+
+<div class="col-sm-8 container-fluid">
+
+    <label for="username">Username</label>
+    <input ng-model="model.user.username"
+           id="username"
+           type="text"
+           placeholder="Username"
+           class="form-control" readonly/>
+
+    <label for="email">Email</label>
+    <input ng-model="model.user.email"
+           id="email"
+           type="email"
+           placeholder="Email Id"
+           class="form-control" readonly/>
+
+    <label for="firstName">First Name</label>
+    <input ng-model="model.user.firstName"
+           id="firstName"
+           type="text"
+           placeholder="First Name"
+           class="form-control" readonly/>
+
+    <label for="lastName">Last Name</label>
+    <input ng-model="model.user.lastName"
+           id="lastName"
+           type="text"
+           placeholder="Last Name"
+           class="form-control" readonly/>
+</div>

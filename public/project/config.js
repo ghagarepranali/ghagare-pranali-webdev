@@ -66,7 +66,15 @@
                 controllerAs: "model"
 
             })
-            .otherwise({
+            .when("/user/other/:uid", {
+                templateUrl: "views/user/templates/profile.other.user.view.client.html",
+                resolve: {
+                    currentUser: checkLoggedIn
+                },
+                controller: "ProfileController",
+                controllerAs: "model"
+            })
+                    .otherwise({
             // Default
             templateUrl: "views/search/templates/search.food.view.client.html"
         });
