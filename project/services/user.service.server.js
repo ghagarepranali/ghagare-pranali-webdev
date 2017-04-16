@@ -7,9 +7,9 @@ module.exports = function (app, userModel) {
 
 
     var facebookConfig = {
-        clientID: process.env.FACEBOOK_CLIENT_ID, //1146628545447156,//
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET, //"d5c0230a8cab3cf017834b449af401a9",// //
-        callbackURL: process.env.FACEBOOK_CALLBACK_URL,//"http://localhost:3000/auth/facebook/callback",////,
+        clientID: 1146628545447156,//process.env.FACEBOOK_CLIENT_ID, //1146628545447156,//
+        clientSecret: "d5c0230a8cab3cf017834b449af401a9",//process.env.FACEBOOK_CLIENT_SECRET, //"d5c0230a8cab3cf017834b449af401a9",// //
+        callbackURL: "http://localhost:3000/auth/facebook/callback",//process.env.FACEBOOK_CALLBACK_URL,//"http://localhost:3000/auth/facebook/callback",////,
         profileFields: ['id', 'name', 'emails']
     };
 

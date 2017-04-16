@@ -13,38 +13,45 @@
 
 </nav>
 <div class="container-fluid">
+<form novalidate name="form1" >
 
     <h1>Register</h1>
     <div class="alert alert-success" ng-show="model.message">
         {{model.message}}
     </div>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+
     <label for="username">Username</label>
     <input  ng-model="user.username"
             id="username"
+            name="username"
             type="text"
             class="form-control"
             placeholder="username"
-            required class="form-control"/>
-    <span ng-show="form1.$submitted && form1.username.$error.required">Username is required</span>
+            required/>
+    <span ng-show="form1.username.$invalid  && form1.username.$pristine" class="help-block">Username is required</span>
+
     <label for="password">Password</label>
     <input ng-model="user.password"
            id="password"
+           name="password"
            type="password"
            class="form-control"
-           placeholder="password"/>
-    <label for="verifyPassword">Verify Password</label>
-    <input id="verifyPassword"
-           type="password"
-           class="form-control"
-           placeholder="verify password"/>
-
+           placeholder="password"
+    required/>
+    <span ng-show="form1.password.$invalid  && form1.password.$pristine" class="help-block">Password is required</span>
     <label for="email">Email</label>
     <input ng-model="user.email"
            id="email"
+           name="email"
            type="email"
-           placeholder="Email Id"
-           class="form-control"/>
-
+           placeholder="example: something@something"
+           class="form-control"
+    required/>
+    <span ng-show="form1.email.$error || form1.email.$pristine" class="help-block">Enter a valid email Id</span>
     <label for="firstName">First Name</label>
     <input ng-model="user.firstName"
            id="firstName"
@@ -62,4 +69,5 @@
     <a ng-click="model.register(user)" class="btn btn-block btn-primary">Register</a>
     <!--  <a ng-click="model.createUser(user)" class="btn btn-block btn-primary">Register</a>-->
     <a href="#/login" class="btn btn-block btn-danger">Cancel</a>
+</form>
 </div>
