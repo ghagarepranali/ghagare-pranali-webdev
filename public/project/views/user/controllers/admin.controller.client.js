@@ -20,8 +20,9 @@
         init();
         
         function displayPendingReviews(response) {
-          //  console.log("response is  "+response);
-            vm.pendingReviews = response;
+
+                vm.pendingReviews = response;
+
         }
 
         function approveReview(review) {
@@ -32,7 +33,13 @@
                      console.log("updated and calling pending");
                     ReviewService
                         .findPendingCriticReviews(vm.adminUser._id)
-                        .success(displayPendingReviews);
+                        .success(function (response) {
+                            vm.message = "Review is submitted successfully";
+                            //  console.log("response is  "+response);
+                            vm.pendingReviews = response;
+                        }, function (err) {
+                            vm.error = "Error in review submission. Try again later";
+                        });
                 })
         }
         
@@ -43,7 +50,13 @@
                 .success(function () {
                     ReviewService
                         .findPendingCriticReviews(vm.adminUser._id)
-                        .success(displayPendingReviews);
+                        .success(function (response) {
+                            vm.message = "Review is rejected successfully";
+                            //  console.log("response is  "+response);
+                            vm.pendingReviews = response;
+                        }, function (err) {
+                            vm.error = "Error in review submission. Try again later";
+                        });
                 })
         }
 

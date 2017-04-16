@@ -1,8 +1,21 @@
 module.exports = function (app, userModel) {
+
+    var bcrypt = require('bcrypt-nodejs');
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
+    var FacebookStrategy = require('passport-facebook').Strategy;
+
+
+    var facebookConfig = {
+        clientID: process.env.FACEBOOK_CLIENT_ID, //1146628545447156,//
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET, //"d5c0230a8cab3cf017834b449af401a9",// //
+        callbackURL: process.env.FACEBOOK_CALLBACK_URL,//"http://localhost:3000/auth/facebook/callback",////,
+        profileFields: ['id', 'name', 'emails']
+    };
+
 
     passport.use(new LocalStrategy(localStrategy));
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -20,6 +33,16 @@ module.exports = function (app, userModel) {
     app.post("/api/user/logout", logout);
     app.get("/api/search/user/:userQuery", searchUser);
     app.put("/api/user/unfollow/:userId", unfollowUser);
+
+    app.get("/auth/facebook", passport.authenticate('facebook', {scope: ['public_profile', 'email']}));
+    app.get("/auth/facebook/callback", passport.authenticate('facebook', {
+            failureRedirect: '/project/#/login'
+        }),
+        function (req, res) {
+            var redirectUrl = "/project/index.html#/user/" + req.user._id.toString();
+            res.redirect(redirectUrl);
+        });
+
     //app.get("/api/display/reviews/:userId", displayReviews);
 
 
@@ -43,6 +66,42 @@ module.exports = function (app, userModel) {
                     if (err) { return done(err); }
                 }
             );
+    }
+
+    function facebookStrategy(token, refreshToken, profile, done) {
+        userModel.findUserByFacebookId(profile.id)
+            .then(function (user) {
+                if (user) {
+                    return done(null, user);
+                }
+                else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newUser = {
+                        facebook: {
+                            id: profile.id,
+                            token: token
+                        },
+
+                        username: emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName: profile.name.familyName,
+                        email: email
+                    };
+                    userModel.createUser(newUser)
+                        .then(function (newUser) {
+                                if (newUser) {
+                                    return done(null, newUser);
+                                }
+                                else {
+                                    return done(null, false, {message: "User not created."})
+                                }
+                            },
+                            function (err) {
+                                return done(err);
+                            });
+                }
+            });
     }
 
     function login(req, res) {

@@ -50,7 +50,8 @@
                 recipeImg: vm.recipe.image
             };
             ReviewService.submitReview(vm.userId, vm.rid, reviewNew)
-                .success(function () {
+                .then(function () {
+                    console.log("setting msg");
                     vm.message = "Review is submitted successfully";
                 }, function (err) {
                     vm.error = "Error in review submission. Try again later";

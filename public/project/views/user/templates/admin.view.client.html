@@ -4,6 +4,12 @@
     Hi, {{model.adminUser.username}}</a>
 </nav>
 
+<div ng-show="model.error" class="alert alert-danger thumbnail-style" role="alert">
+    {{model.error}}
+</div>
+<div class="alert alert-primary thumbnail-style" ng-show="model.message">
+    {{model.message}}
+</div>
 <ul class="list-group">
 <li ng-repeat="review in model.pendingReviews" class="list-group-item">
     <div class="row thumbnail-style">

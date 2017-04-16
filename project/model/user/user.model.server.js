@@ -21,7 +21,8 @@ module.exports = function () {
         "followUser": followUser,
         "addRecipeToUser": addRecipeToUser,
         "searchUser":searchUser,
-        "unfollowUser": unfollowUser
+        "unfollowUser": unfollowUser,
+        "findUserByFacebookId": findUserByFacebookId
     };
     return api;
 
@@ -102,6 +103,12 @@ function unfollowUser(userId, unFwUser) {
                 });
         });
 }
-
+    function findUserByFacebookId(facebookId) {
+        return UserModel.findOne({'facebook.id': facebookId})
+            .exec()
+            .then(function (user) {
+                return user;
+            });
+    }
 
 };
