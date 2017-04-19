@@ -12,6 +12,9 @@
 
 </nav>
 <div class="row margin-class">
+    <div class="alert alert-success" ng-show="model.message">
+        {{model.message}}
+    </div>
     <div class="col-xs-12 col-md-4"><img ng-src="{{model.recipe.image}}"></div>
     <div class="col-xs-6 col-md-8">
         <div>

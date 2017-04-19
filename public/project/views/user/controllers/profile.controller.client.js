@@ -19,6 +19,7 @@
         vm.viewProfile =viewProfile;
         vm.unfollowUser = unfollowUser;
         vm.displayReviews = displayReviews;
+        vm.displayFollowing = displayFollowing;
 
        // vm.otherProfile=false;
 
@@ -43,7 +44,8 @@
                 .success(function (response) {
                     vm.users = response;
                 });
-
+          //  displayFollowers();
+           // displayFollowing();
 
            /* UserService.displayReviews(vm.userId)
                 .success(function (response) {
@@ -109,12 +111,12 @@ console.log("initial value "+ vm.otherProfile);
                     vm.message = "Successfully unfollowed";
                 })
         }
-        
+
         function searchFood(food) {
             vm.food = food;
             $location.url("/user/"+vm.userId+"/search/"+ vm.food);
         }
-        
+
         function searchUser(userQuery) {
             console.log("in search query"+ userQuery);
             UserService
@@ -122,7 +124,8 @@ console.log("initial value "+ vm.otherProfile);
                 .success(function (response) {
                   //  console.log("in search"+ response);
                     vm.userSearchResults = response;
-                })
+                });
+
         }
 
         function setActiveTab(parameter) {
@@ -184,7 +187,7 @@ console.log("initial value "+ vm.otherProfile);
             }
 
         }
-        
+
         function displayFollowers() {
             vm.listOfFollowers = [];
           //  for(var i=0; i<vm.user.followers; i++){
@@ -197,6 +200,8 @@ console.log("initial value "+ vm.otherProfile);
 
                     })
             }
+
+            init();
         }
 
 
@@ -211,19 +216,23 @@ console.log("initial value "+ vm.otherProfile);
 
                     })
             }
+            init();
         }
-
+        var temp=[];
+        vm.likesForUser = [];
         function displayLikes() {
            // console.log("in display");
-            vm.likesForUser = [];
+
            // console.log("the user is "+ vm.user.likes);
             for(var i in vm.user.likes) {
                 RecipeService.findRecipe(vm.user.likes[i])
-                    .then(function (recipe) {
+                    .then(function (response) {
+                        var recipe = response.data;
                         console.log("the rec is found "+ recipe);
                         RecipeService.findRecipeById(recipe.id)
                             .then(function (response) {
                                 vm.likesForUser.push(response.data);
+
                             })
                     });
               /*  RecipeService.findRecipe(vm.user.likes[i])

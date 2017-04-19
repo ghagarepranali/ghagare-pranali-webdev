@@ -42,8 +42,9 @@ init();
 
 function addToFav(recipe) {
     RecipeService.addToFav(vm.userId, recipe, vm.rid)
-        .success(function () {
-            console.log("added");
+        .success(function (response) {
+            vm.message="Successfully Liked";
+            console.log(vm.message);
         })
 }
 
