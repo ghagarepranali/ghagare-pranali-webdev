@@ -11,10 +11,11 @@
 
 
         function register(user) {
+            if(user&&user.username&&user.password){
                 UserService
                     .findUserByUsername(user.username)
                     .success(function (user) {
-                        vm.message = "The username is already taken";
+                        vm.error = "The username is already taken";
                     })
                     .error(function (err) {
                         UserService
@@ -26,7 +27,11 @@
                                 vm.error = "Unable to register user due to an error:"
                             });
                     });
+            }else{
+
+                vm.error="Enter credentials";
             }
+        }
 
     }
 })();

@@ -13,7 +13,7 @@
 
 </nav>
 <div class="container-fluid">
-<form novalidate name="form1" >
+<form name="form1" class="form-group" novalidate>
 
     <h1>Register</h1>
     <div class="alert alert-success" ng-show="model.message">
@@ -32,7 +32,7 @@
             class="form-control"
             placeholder="username"
             required/>
-    <span ng-show="form1.username.$invalid  && form1.username.$pristine" class="help-block">Username is required</span>
+    <p ng-show="form1.username.$error.required && !form1.$pristine" class="error-text">Username is required</p>
 
     <label for="password">Password</label>
     <input ng-model="user.password"
@@ -42,7 +42,8 @@
            class="form-control"
            placeholder="password"
     required/>
-    <span ng-show="form1.password.$invalid  && form1.password.$pristine" class="help-block">Password is required</span>
+    <p ng-show="form1.password.$invalid  && !form1.password.$pristine" class="error-text">Password is required</p>
+
     <label for="email">Email</label>
     <input ng-model="user.email"
            id="email"
@@ -51,7 +52,7 @@
            placeholder="example: something@something"
            class="form-control"
     required/>
-    <span ng-show="form1.email.$error || form1.email.$pristine" class="help-block">Enter a valid email Id</span>
+    <p ng-show="form1.email.$invalid && !form1.email.$pristine" class="error-text">This is not a valid email</p>
     <label for="firstName">First Name</label>
     <input ng-model="user.firstName"
            id="firstName"
@@ -66,7 +67,7 @@
            placeholder="Last Name"
            class="form-control"/>
 
-    <a ng-click="model.register(user)" class="btn btn-block btn-primary">Register</a>
+    <a ng-click="model.register(user)" class="btn btn-block btn-primary form-control">Register</a>
     <!--  <a ng-click="model.createUser(user)" class="btn btn-block btn-primary">Register</a>-->
     <a href="#/login" class="btn btn-block btn-danger">Cancel</a>
 </form>

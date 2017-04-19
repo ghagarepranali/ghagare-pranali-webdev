@@ -47,9 +47,24 @@ module.exports = function (app, userModel) {
 
 
     function localStrategy(username, password, done) {
-        console.log(username);
-        console.log(password);
-        userModel
+        userModel.findUserByUsername(username)
+            .then(
+                function (user) {
+                    if (user) {
+                        if (bcrypt.compareSync(password, user[0].password)) {
+                            return done(null, user[0]);
+                        }
+                        else {
+                            return done(null, false, {message: "Incorrect password."});
+                        }
+                    }
+                },
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                });
+      /*  userModel
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
@@ -65,7 +80,7 @@ module.exports = function (app, userModel) {
                 function(err) {
                     if (err) { return done(err); }
                 }
-            );
+            );*/
     }
 
     function facebookStrategy(token, refreshToken, profile, done) {
@@ -120,20 +135,27 @@ module.exports = function (app, userModel) {
 
     function createUser(req, res) {
         var newUser = req.body;
-        /*var newUser = {
-            username: user.username,
-            password: user.password,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName
-        };*/
-        userModel
+        newUser.password = bcrypt.hashSync(newUser.password);
+        userModel.createUser(newUser)
+            .then(function (user) {
+                if (user) {
+                    req.login(user, function (err) {
+                        if (err) {
+                            res.sendStatus(400).send(err);
+                        }
+                        else {
+                            res.json(user);
+                        }
+                    });
+                }
+            });
+       /* userModel
             .createUser(newUser)
             .then(function (user) {
                 res.json(user);
             }, function (error) {
                 res.sendStatus(500).send(error);
-            });
+            });*/
     }
 
     function findUser(req, res) {

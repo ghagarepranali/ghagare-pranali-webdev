@@ -33,3 +33,11 @@ body {
     margin-top:20px;
 
 }
+
+.margin-class {
+    margin-top:20px;
+}
+
+.error-text {
+    color: red;
+}

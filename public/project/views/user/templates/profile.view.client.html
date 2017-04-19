@@ -10,7 +10,7 @@
 
   </nav>
 
-<div class="container-fluid">
+<div class="container-fluid margin-class">
 
     <div ng-show="model.error" class="alert alert-danger" role="alert">
         {{model.error}}
@@ -78,20 +78,23 @@
         </ul>
     </div>
     <div class="col-sm-8" ng-show="model.showUpdatePage">
-
+        <form name="form1" class="form-group" novalidate>
     <label for="username">Username</label>
     <input ng-model="model.user.username"
            id="username"
+           name="username"
            type="text"
            placeholder="Username"
-           class="form-control"/>
+           class="form-control" required/>
+            <p ng-show="form1.username.$error.required && !form1.$pristine" class="error-text">Username is required</p>
 
-    <label for="email">Email</label>
+            <label for="email">Email</label>
     <input ng-model="model.user.email"
            id="email"
            type="email"
            placeholder="Email Id"
-           class="form-control"/>
+           class="form-control" required/>
+            <p ng-show="form1.email.$invalid && !form1.email.$pristine && form1.email.$error.required" class="error-text">This is not a valid email</p>
 
     <label for="firstName">First Name</label>
     <input ng-model="model.user.firstName"
@@ -111,11 +114,11 @@
     <a ng-click="model.deleteUser()" class="btn btn-block btn-primary">Delete</a>
     <a ng-click="model.logout()" class="btn btn-danger btn-block">Logout</a>
 
-
+        </form>
     </div>
     <div class="col-sm-8" ng-show="model.showReviews">
         <div ng-repeat="r in model.listOfReviewsForUser">
-            <ul class="list-group thumbnail-style">
+            <ul class="list-group margin-class">
 
                     <img ng-src="{{r.recipeImg}}">
                 <li class="list-group-item">
@@ -133,33 +136,39 @@
 
 
 
-    <div class="col-sm-8" ng-show="model.showFollowing">
+    <div class="col-sm-8 margin-class" ng-show="model.showFollowing">
         <div ng-repeat="lifg in model.listOfFollowing">
-
+<ul class="list-group">
+    <li class="list-group-item">
                <a href="#/user/other/{{lifg._id}}">{{lifg.username}}</a>
-            <a ng-click="model.unfollowUser(lifg)" class="btn btn-block btn-danger">Unfollow</a>
 
+            <a ng-click="model.unfollowUser(lifg)" class="btn btn-danger badge">Unfollow</a>
+    </li>
+</ul>
         </div>
     </div>
 
-    <div class="col-sm-8" ng-show="model.showFollowers">
+    <div class="col-sm-8 margin-class" ng-show="model.showFollowers">
          <div ng-repeat="lif in model.listOfFollowers">
+             <li>
              <a href="#/user/other/{{lif._id}}">
                     {{lif.username}}</a>
-
+             </li>
         </div>
     </div>
 
 
-    <div class="col-sm-8" ng-show="model.showSearchUsers">
+    <div class="col-sm-8 margin-class" ng-show="model.showSearchUsers">
     <input ng-model="model.search.user" id="searchUser" type="text" placeholder="searchUser" class="form-control"/>
     <a ng-click="model.searchUser(model.search.user)" class="btn btn-block btn-primary"> search user</a>
 
     <div ng-repeat="userResult in model.userSearchResults">
-        <ul>
-            <li>
-                {{userResult.username}}
-                <a ng-click="model.followUser(userResult._id)" class="btn btn-block">Follow</a>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="#/user/other/{{userResult._id}}"> {{userResult.username}}</a>
+                <a class="btn btn-primary badge" ng-click="model.followUser(userResult._id)"
+                   ng-show="((model.user._id!=userResult._id)&&(model.user.following.indexOf(userResult._id)==-1))"
+                   >Follow</a>
             </li>
         </ul>
     </div>

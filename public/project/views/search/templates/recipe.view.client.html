@@ -11,7 +11,7 @@
        <a ng-show="{{model.currentUser}}" ng-click="model.logout()" class="nav navbar-brand navbar-right">Logout</a>
 
 </nav>
-<div class="row thumbnail-style">
+<div class="row margin-class">
     <div class="col-xs-12 col-md-4"><img ng-src="{{model.recipe.image}}"></div>
     <div class="col-xs-6 col-md-8">
         <div>
@@ -21,8 +21,8 @@
 
 
         <div ng-repeat="ingredient in model.recipe.ingredientLines">
-            <ul>
-                <li>{{ingredient}}</li>
+            <ul class="list-group">
+                <li class="list-group-item">{{ingredient}}</li>
             </ul>
         </div>
         <div>
@@ -34,7 +34,7 @@
 </div>
 
 
-<ul class="list-group thumbnail-style">
+<ul class="list-group margin-class">
     <div class="row">
         <div class="col-xs-11 col-sm-6">
             Recent Reviews

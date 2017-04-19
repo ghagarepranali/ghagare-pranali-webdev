@@ -17,19 +17,28 @@
     <div ng-show="model.error" class="alert alert-danger" role="alert">
         {{model.error}}
     </div>
+    <div ng-show="model.message" class="alert alert-danger" role="alert">
+        {{model.message}}
+    </div>
+    <form name="loginform" class="form-group" novalidate>
 
     <label for="username">Username</label>
     <input ng-model="user.username"
            id="username"
+           name="username"
            class="form-control"
-           placeholder="john123"/>
+           placeholder="john123" required/>
+        <p ng-show="loginform.username.$error.required && !loginform.$pristine" class="error-text">Username is required</p>
 
-    <label for="password">Password</label>
+
+        <label for="password">Password</label>
     <input ng-model="user.password"
            id="password"
+           name="password"
            class="form-control"
            type="password"
-           placeholder="req4321"/>
+           placeholder="req4321" required/>
+        <p ng-show="loginform.password.$error.required && !loginform.$pristine" class="error-text">Password is required</p>
 
 
         <a href="/auth/facebook" class="btn btn-primary btn-block">
@@ -38,6 +47,7 @@
         </a>
 
 
-    <a ng-click="model.login(user)" class="btn btn-primary btn-block">Login</a>
-    <a href="#/register" class="btn btn-success btn-block">Register</a>
+    <a ng-click="model.login(user)" class="btn btn-success btn-block form-control">Login</a>
+        <a href="#/register" class="pull-right"><large>Not a member?</large></a>
+    </form>
 </div>

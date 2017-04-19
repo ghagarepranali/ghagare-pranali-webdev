@@ -17,7 +17,8 @@
                         $location.url("/user/"+user._id);
                     }
                 }, function (err) {
-                    vm.error = "User not found";
+                        vm.error = "User not found or incorrect password";
+
                 });
 
 
