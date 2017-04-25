@@ -1,6 +1,6 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <a ng-click="model.logout()" class="navbar-brand navbar-right">Logout</a>
-    <a class="navbar-brand navbar-right" >
+<nav class="navbar navbar-default navbar-fixed-top">
+    <a  ng-show="{{model.currentUser}}" ng-click="model.logout()" class="navbar-brand glyphicon glyphicon-off pull-right "></a>
+    <a class="navbar-brand pull-right" >
     Hi, {{model.adminUser.username}}</a>
 </nav>
 

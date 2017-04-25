@@ -10,6 +10,7 @@
             console.log("the rid is "+ vm.rid);
             vm.currentUser = currentUser;
             vm.addToFav = addToFav;
+
        // vm.viewRecipe = viewRecipe;
             console.log("1");
             vm.writeReview = writeReview;
@@ -45,6 +46,7 @@ function addToFav(recipe) {
         .success(function (response) {
             vm.message="Successfully Liked";
             console.log(vm.message);
+            vm.setFlagForLiked = true;
         })
 }
 

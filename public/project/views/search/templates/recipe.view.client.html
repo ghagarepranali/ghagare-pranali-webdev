@@ -1,18 +1,21 @@
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <a class="navbar-brand" href="#/user/{{model.userId}}/search">Munchkins</a>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <span class="glyphicon glyphicon-cutlery navbar-brand navbar-left" aria-hidden="true"></span>
+    <a class="navbar-brand navbar-left" href="#/user/{{model.userId}}/search">MunchTime</a>
 
-
-    <a ng-hide="{{model.currentUser != null}}" class="nav navbar-brand navbar-right"
+    <a ng-hide="{{model.currentUser != null}}" class="nav navbar-brand pull-right"
         href="#/register">Register</a>
-    <a ng-hide="{{model.currentUser != null}}" href="#/login" class="nav navbar-brand navbar-right">Login</a>
-     <a ng-show="{{model.currentUser}}" href="#/user/{{model.userId}}" class="nav navbar-brand navbar-right">
-        Hi, {{model.currentUser.username}}</a>
-       <a ng-show="{{model.currentUser}}" ng-click="model.logout()" class="nav navbar-brand navbar-right">Logout</a>
+    <a ng-hide="{{model.currentUser != null}}" href="#/login" class="nav navbar-brand pull-right">Login</a>
 
-</nav>
-<div class="row margin-class">
-    <div class="alert alert-success" ng-show="model.message">
+    <a  ng-show="{{model.currentUser}}" ng-click="model.logout()" class="navbar-brand glyphicon glyphicon-off pull-right "></a>
+    <a ng-show="{{model.currentUser}}" class="navbar-brand pull-right" href="#/user/{{model.userId}}" >
+        Hi, {{model.currentUser.username}}</a>
+
+
+   </nav>
+
+<div class="row margin-class container-fluid">
+    <div class="alert alert-success" ng-show="model.message" role="alert">
         {{model.message}}
     </div>
     <div class="col-xs-12 col-md-4"><img ng-src="{{model.recipe.image}}"></div>
@@ -38,11 +41,16 @@
 
 
 <ul class="list-group margin-class">
-    <div class="row">
-        <div class="col-xs-11 col-sm-6">
-            Recent Reviews
-        </div>
+
+    <div ng-show="!model.reviewList.length">
+        No reviews available
     </div>
+    <div ng-show="model.reviewList.length">
+        <div class="row">
+            <div class="col-xs-11 col-sm-6">
+                Recent Reviews
+            </div>
+        </div>
 <li ng-repeat="list in model.reviewList" class="list-group-item">
     <div class="row">
 
@@ -51,5 +59,6 @@
         </div>
     </div>
 </li>
+    </div>
 </ul>
 

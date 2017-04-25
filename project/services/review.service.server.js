@@ -14,16 +14,12 @@ module.exports = function (app, reviewModel) {
         var recipeId = req.params.rid;
 
         var newReview = req.body;
-        console.log(newReview);
-        //var recipe = req.body.recipe;
-        //console.log(req.body);
-console.log("in service");
         reviewModel
             .submitReview(newReview)
             .then(function (response){
-                console.log(response);
+                res.sendStatus(200);
             }, function (err) {
-
+                res.sendStatus(500);
             });
     }
 

@@ -1,12 +1,13 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
        <a class="navbar-brand" href="#/user/{{model.currentUser._id}}/search">Munchkins</a>
 
-        <a ng-hide="{{model.currentUser != null}}" href="#/register" class="navbar-brand navbar-right">Register</a>
-        <a ng-hide="{{model.currentUser != null}}" href="#/login" class="navbar-brand navbar-right">Login</a>
+        <a ng-hide="{{model.currentUser != null}}" href="#/register" class="navbar-brand pull-right">Register</a>
+        <a ng-hide="{{model.currentUser != null}}" href="#/login" class="navbar-brand pull-right">Login</a>
 
-        <a ng-show="{{model.currentUser}}"  ng-click="model.logout()" class="navbar-brand navbar-right">Logout</a>
-        <a ng-show="{{model.currentUser}}" class="navbar-brand navbar-right" href="#/user/{{model.currentUser._id}}" >
-                Hi, {{model.currentUser.username}}</a>
+
+    <a  ng-show="{{model.currentUser}}" ng-click="model.logout()" class="navbar-brand glyphicon glyphicon-off pull-right "></a>
+    <a ng-show="{{model.currentUser}}" class="navbar-brand pull-right" href="#/user/{{model.currentUser._id}}" >
+        Hi, {{model.currentUser.username}}</a>
 
   </nav>
 
@@ -118,31 +119,29 @@
     </div>
     <div class="col-sm-8" ng-show="model.showReviews">
         <div ng-repeat="r in model.listOfReviewsForUser">
-            <ul class="list-group margin-class">
-
+            <div class="panel panel-default">
+                <div class="panel-heading"><label>Recipe Name: </label> {{r.recipeName}}</div>
+                <div class="panel-heading"> <label>Review Content: </label> {{r.description}}</div>
+                <div class="panel-body">
                     <img ng-src="{{r.recipeImg}}">
-                <li class="list-group-item">
+                </div>
+            </div>
 
-<label>Recipe Name: </label>
-                {{r.recipeName}}
-                </li>
-                <li class="list-group-item">
-                   <label>Review Content: </label> {{r.description}}
-                </li>
 
-            </ul>
         </div>
     </div>
 
 <div class="col-sm-8" ng-show="model.showLikes">
     <div ng-repeat="like in model.likesForUser">
-        <ul class="list-group">
-            <li class="list-group-item">
-                {{like[0].label}}
-            </li>
-            <li class="list-group-item"><img ng-src="{{like[0].image}}"></li>
-        </ul>
-    </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">{{like[0].label}}</div>
+            <div class="panel-body">
+                <img ng-src="{{like[0].image}}">
+            </div>
+        </div>
+
+         </div>
 </div>
 
     <div class="col-sm-8 margin-class" ng-show="model.showFollowing">

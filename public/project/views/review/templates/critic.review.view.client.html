@@ -1,18 +1,19 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <a class="navbar-brand navbar-left" href="#/user/{{model.userId}}/search">Munchkins</a>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <span class="glyphicon glyphicon-cutlery navbar-brand navbar-left" aria-hidden="true"></span>
+    <a class="navbar-brand navbar-left" href="#/user/{{model.userId}}/search">MunchTime</a>
 
-    <a ng-hide="{{model.currentUser != null}}" href="#/register" class="navbar-brand navbar-right">Register</a>
-    <a ng-hide="{{model.currentUser != null}}" href="#/login" class="navbar-brand navbar-right">Login</a>
+    <a ng-hide="{{model.currentUser != null}}" href="#/register" class="navbar-brand pull-right">Register</a>
+    <a ng-hide="{{model.currentUser != null}}" href="#/login" class="navbar-brand pull-right">Login</a>
 
-    <a ng-show="{{model.currentUser}}"  ng-click="model.logout()" class="navbar-brand navbar-right">Logout</a>
-    <a ng-show="{{model.currentUser}}" class="navbar-brand navbar-right" href="#/user/{{model.userId}}" >
+    <a  ng-show="{{model.currentUser}}" ng-click="model.logout()" class="navbar-brand glyphicon glyphicon-off pull-right "></a>
+    <a ng-show="{{model.currentUser}}" class="navbar-brand pull-right" href="#/user/{{model.userId}}" >
         Hi, {{model.currentUser.username}}</a>
 
 </nav>
 
 
 
-<div class="container-fluid">
+<div class="container-fluid margin-class">
     <div ng-show="model.error" class="alert alert-danger" role="alert">
         {{model.error}}
     </div>

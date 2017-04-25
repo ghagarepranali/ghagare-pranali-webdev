@@ -218,11 +218,11 @@ console.log("initial value "+ vm.otherProfile);
             }
             init();
         }
-        var temp=[];
-        vm.likesForUser = [];
+       // var temp=[];
+
         function displayLikes() {
            // console.log("in display");
-
+            vm.likesForUser = [];
            // console.log("the user is "+ vm.user.likes);
             for(var i in vm.user.likes) {
                 RecipeService.findRecipe(vm.user.likes[i])
@@ -252,7 +252,7 @@ console.log("initial value "+ vm.otherProfile);
         
         
         function displayReviews() {
-            //vm.listOfReviewsForUser = [];
+            vm.listOfReviewsForUser = [];
             ReviewService
                 .findReviewsByUserId(vm.userId)
                 .then(function (response) {

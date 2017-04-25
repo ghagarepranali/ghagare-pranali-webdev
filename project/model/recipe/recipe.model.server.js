@@ -28,9 +28,9 @@ module.exports = function () {
             .exec()
             .then(function (response) {
                 if(response != null){
-                    RecipeModel.update({id: recipe.id}, {$addToSet:{_user: userId}})
+                   return RecipeModel.update({id: recipe.id}, {$addToSet:{_user: userId}})
                         .then(function (recipe1) {
-                            model.userModel.findUserById(userId)
+                          return model.userModel.findUserById(userId)
                                 .then(function (user) {
                                     user.likes.push(recipe1._id);
                                     user.save();
@@ -40,7 +40,7 @@ module.exports = function () {
                 } else {
                     RecipeModel.create(recipe)
                         .then(function (recipe1) {
-                            model.userModel.findUserById(userId)
+                         return model.userModel.findUserById(userId)
                                 .then(function (user) {
                                     user.likes.push(recipe1._id);
                                     user.save();
@@ -49,7 +49,7 @@ module.exports = function () {
 
                 }
             }, function (err) {
-
+                return err;
             });
         //return RecipeModel.create(recipe);
     }

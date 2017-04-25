@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
 
                 <a href="#/register" class="navbar-brand pull-right">
                     Register
@@ -8,7 +8,8 @@
                     Login
                 </a>
 
-                <a class="navbar-brand" href="#/home">Munchkins</a>
+    <span class="glyphicon glyphicon-cutlery navbar-brand navbar-left" aria-hidden="true"></span>
+        <a class="navbar-brand navbar-left" href="#/home">MunchTime</a>
 </nav>
 
 <div class="container-fluid">
@@ -41,7 +42,7 @@
         <p ng-show="loginform.password.$error.required && !loginform.$pristine" class="error-text">Password is required</p>
 
 
-        <a href="/auth/facebook" class="btn btn-primary btn-block">
+        <a href="/auth/facebook" class="btn btn-info btn-block">
             <span class="fa fa-facebook"></span>
             Facebook
         </a>

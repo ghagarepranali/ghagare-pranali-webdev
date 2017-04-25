@@ -1,11 +1,14 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <a class="navbar-brand" href="#/user/{{model.currentUser._id}}/search">Munchkins</a>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <span class="glyphicon glyphicon-cutlery navbar-brand navbar-left" aria-hidden="true"></span>
+    <a class="navbar-brand navbar-left" href="#/user/{{model.currentUser._id}}/search">MunchTime</a>
 
-    <a ng-hide="{{model.currentUser != null}}" href="#/register" class="navbar-brand navbar-right">Register</a>
-    <a ng-hide="{{model.currentUser != null}}" href="#/login" class="navbar-brand navbar-right">Login</a>
 
-    <a ng-show="{{model.currentUser}}"  ng-click="model.logout()" class="navbar-brand navbar-right">Logout</a>
-    <a ng-show="{{model.currentUser}}" class="navbar-brand navbar-right" href="#/user/{{model.currentUser._id}}" >
+
+    <a ng-hide="{{model.currentUser != null}}" href="#/register" class="navbar-brand pull-right">Register</a>
+    <a ng-hide="{{model.currentUser != null}}" href="#/login" class="navbar-brand pull-right">Login</a>
+
+    <a  ng-show="{{model.currentUser}}" ng-click="model.logout()" class="navbar-brand glyphicon glyphicon-off pull-right "></a>
+    <a ng-show="{{model.currentUser}}" class="navbar-brand pull-right" href="#/user/{{model.currentUser._id}}" >
         Hi, {{model.currentUser.username}}</a>
 
 </nav>

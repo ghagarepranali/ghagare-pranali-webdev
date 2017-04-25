@@ -1,22 +1,22 @@
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
 
-
-               <a ng-hide="{{model.currentUser != null}}" class="navbar-brand navbar-right"
+<span class="glyphicon glyphicon-cutlery navbar-brand navbar-left" aria-hidden="true"></span>
+    <a class="navbar-brand">MunchTime</a>
+               <a ng-hide="{{model.currentUser != null}}" class="navbar-brand pull-right"
                 href="#/register">Register</a>
-            <a ng-hide="{{model.currentUser != null}}" class="navbar-brand navbar-right"
+            <a ng-hide="{{model.currentUser != null}}" class="navbar-brand pull-right"
                href="#/login">Login</a>
 
-    <a ng-show="{{model.currentUser}}" class="navbar-brand navbar-right"
-       ng-click="model.logout()">Logout</a>
-                <a ng-show="{{model.currentUser}}" class="navbar-brand navbar-right"
+    <a  ng-show="{{model.currentUser}}" ng-click="model.logout()" class="navbar-brand glyphicon glyphicon-off pull-right "></a>
+    <a ng-show="{{model.currentUser}}" class="navbar-brand pull-right"
                    href="#/user/{{model.userId}}">Hi, {{model.currentUser.username}}</a>
 
 </nav>
 
 <div class="container-fluid margin-class">
     <input ng-model="recipe" class="form-control" placeholder="type in some ingredients..."/>
-    <a class="btn btn-primary btn-block" ng-click="model.searchRecipe(recipe)"> Search for Recipes </a>
+    <a class="btn btn-warning btn-block" ng-click="model.searchRecipe(recipe)"> Search for Recipes </a>
 
 </div>
 

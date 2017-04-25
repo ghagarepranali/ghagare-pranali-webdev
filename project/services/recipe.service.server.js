@@ -37,9 +37,9 @@ module.exports = function (app, recipeModel, userModel) {
                     userModel
                         .addRecipeToUser(userId, recipe)
                         .then(function (response) {
-                            console.log("server");
+                            res.sendStatus(200);
                         },function (err) {
-                           console.log(err);
+                           res.sendStatus(500);
                         });
 
 
