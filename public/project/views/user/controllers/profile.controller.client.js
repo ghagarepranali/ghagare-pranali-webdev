@@ -169,6 +169,7 @@ console.log("initial value "+ vm.otherProfile);
                 vm.showSearchUsers = true;
                 vm.showFollowing = false;
                 vm.showFollowers = false;
+                vm.userSearchResults="";
             } else if(parameter == "showFollowing"){
                 vm.message="";
                 vm.error="";
