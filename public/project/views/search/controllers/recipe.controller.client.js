@@ -10,8 +10,10 @@
            // console.log("the rid is "+ vm.rid);
             vm.currentUser = currentUser;
             vm.addToFav = addToFav;
+        vm.logout = logout;
 
-       // vm.viewRecipe = viewRecipe;
+
+        // vm.viewRecipe = viewRecipe;
            // console.log("1");
             vm.writeReview = writeReview;
 
@@ -54,5 +56,14 @@ function writeReview(review) {
    // console.log("");
     $location.url("/user/"+vm.userId+"/review/"+vm.rid);
 }
-    }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
+        }
+
+}
 })();

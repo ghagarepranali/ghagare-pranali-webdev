@@ -87,21 +87,14 @@
         UserService
             .loggedin()
             .then(function (user) {
-                console.log("in");
+                //console.log("in");
                 if(user != '0') {
 
                     defer.resolve(user);
 
-                  /*  if(user.roles == "ADMIN"){
-                        console.log("role "+user.roles);
-                        $location.url("/admin");
-                    }
-*/
                 } else {
                     defer.resolve(null);
-                   // console.log("reject "+user.roles);
 
-                    //$location.url('/login');
                 }
             });
         return defer.promise;
@@ -112,19 +105,19 @@
         UserService
             .loggedin()
             .then(function (user) {
-                console.log("in");
+                //console.log("in");
                 if(user != '0') {
 
                     defer.resolve(user);
 
                     if(user.roles == "ADMIN"){
-                        console.log("role "+user.roles);
+                       // console.log("role "+user.roles);
                         $location.url("/admin");
                     }
 
                 } else {
                     defer.reject();
-                    console.log("reject "+user.roles);
+                   // console.log("reject "+user.roles);
                     $location.url('/login');
                 }
             });
