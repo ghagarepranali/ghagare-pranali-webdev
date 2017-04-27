@@ -88,7 +88,7 @@ module.exports = function () {
     }
 
     function findReviewsByRecipeId(recipeId) {
-        return ReviewModel.find({"recipeId": recipeId});
+        return ReviewModel.find({"recipeId": recipeId, "isCritic": true});
     }
 
     function findReviewsByUserId(userId) {

@@ -3,7 +3,7 @@
         .module("FoodAppMaker")
         .controller("RecipeController", RecipeController);
 
-    function RecipeController($routeParams, $http, RecipeService, $location, currentUser, ReviewService) {
+    function RecipeController($routeParams, $http, RecipeService, $location, currentUser, ReviewService, UserService) {
             var vm=this;
             vm.userId = $routeParams.uid;
             vm.rid = $routeParams.rid;
