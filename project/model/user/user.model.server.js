@@ -71,7 +71,7 @@ module.exports = function () {
     }
 
     function addRecipeToUser(userId, recipe) {
-        console.log("here");
+      //  console.log("here");
         return UserModel.findUserById(userId)
             .then(function (user) {
                 user.likes.push(recipe._id);

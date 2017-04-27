@@ -20,15 +20,15 @@
                 +"&app_id=8ad19515&app_key=ceec8d097db8b2d50f1d6645d4a0efd4";
             vm.recipeSearchId = recipeSearchId;
             // console.log(recipeId);
-            console.log(recipeSearchId);
+            //console.log(recipeSearchId);
             $http.get(recipeSearchId)
                 .success(function (response) {
-                    console.log(response);
+                   // console.log(response);
                     vm.recipe = response[0];
-                    console.log(vm.recipe);
+                    //console.log(vm.recipe);
                     // $location.url("/recipe");
                 }, function (err) {
-                    console.log("error");
+                    //console.log("error");
                 });
 
         }
@@ -51,7 +51,7 @@
             };
             ReviewService.submitReview(vm.userId, vm.rid, reviewNew)
                 .then(function () {
-                    console.log("setting msg");
+                   // console.log("setting msg");
                     vm.message = "Review is submitted successfully";
                 }, function (err) {
                     vm.error = "Error in review submission. Try again later";

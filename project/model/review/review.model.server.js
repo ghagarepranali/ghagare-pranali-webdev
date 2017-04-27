@@ -73,43 +73,14 @@ module.exports = function () {
                 }
             });
 
-        /* console.log("in review model");
-         return ReviewModel.update({_id: review._id}, {$set: {isCritic: true}})
-             .exec()
-             .then(function () {*/
-              /* return  model.userModel.findUserById(review.userId)
-                    .then(function (user) {
-                        user.roles = 'CRITIC';
-                        user.save();
-                      /!*  console.log("user is found "+ user);
-                             model.userModel.updateRoleToCritic(user).exec();
-                       *!/
-                      return ReviewModel.find({userId: user._id})
-                       .exec()
-                       .then(function () {
 
-                       return ReviewModel.update({userId: user._id}, {$set: {isCritic: true}}, {multi: true})
-                           .exec()
-                           .then(function () {
-                               return model.userModel.update({_id: user._id}, {$set: {reviewed: review._id}});
-                           })
-
-                       })
-
-
-                    }, function (err) {
-                        
-                    });*/
-        /*   }, function (err) {
-                return err;
-            })*/
     }
 
     function declineReview(reviewId) {
         return ReviewModel.findById(reviewId)
             .exec()
             .then(function (r) {
-                console.log("declining this r"+ r._id);
+                //console.log("declining this r"+ r._id);
                return r.remove();
             }, function (err) {
                 return err;

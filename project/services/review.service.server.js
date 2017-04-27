@@ -10,7 +10,7 @@ module.exports = function (app, reviewModel) {
 
     function submitReview(req, res) {
         var userId = req.params.userId;
-        console.log(userId);
+       // console.log(userId);
         var recipeId = req.params.rid;
 
         var newReview = req.body;
@@ -39,7 +39,7 @@ module.exports = function (app, reviewModel) {
         console.log("in app review");
         var adminId = req.params.adminId;
         var review = req.body;
-        console.log(review);
+        //console.log(review);
         reviewModel
             .approveReview(review, adminId)
             .then(function () {
@@ -52,7 +52,7 @@ module.exports = function (app, reviewModel) {
 
     function declineReview(req, res) {
         var reviewId = req.params.reviewId;
-        console.log("review in declin server"+ reviewId);
+        //console.log("review in declin server"+ reviewId);
         reviewModel
             .declineReview(reviewId)
             .then(function () {

@@ -88,11 +88,11 @@
         }
 
         function approveReview(review) {
-            console.log("in app control "+ review);
+            //console.log("in app control "+ review);
             ReviewService
                 .approveReview(review, vm.adminUser._id)
                 .success(function () {
-                     console.log("updated and calling pending");
+                    // console.log("updated and calling pending");
                     ReviewService
                         .findPendingCriticReviews(vm.adminUser._id)
                         .success(function (response) {
@@ -106,7 +106,7 @@
         }
         
         function declineReview(review) {
-            console.log("in decline control "+ review);
+            //console.log("in decline control "+ review);
             ReviewService
                 .declineReview(review._id)
                 .success(function () {

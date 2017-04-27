@@ -118,7 +118,7 @@ console.log("initial value "+ vm.otherProfile);
         }
 
         function searchUser(userQuery) {
-            console.log("in search query"+ userQuery);
+           // console.log("in search query"+ userQuery);
             UserService
                 .searchUser(userQuery)
                 .success(function (response) {
@@ -209,7 +209,7 @@ console.log("initial value "+ vm.otherProfile);
                 UserService
                     .findUserById(vm.user.followers[i])
                     .then(function (user) {
-                        console.log("the user is "+ user);
+                       // console.log("the user is "+ user);
                         vm.listOfFollowers.push(user.data);
 
                     })
@@ -242,7 +242,7 @@ console.log("initial value "+ vm.otherProfile);
                 RecipeService.findRecipe(vm.user.likes[i])
                     .then(function (response) {
                         var recipe = response.data;
-                        console.log("the rec is found "+ recipe);
+                       // console.log("the rec is found "+ recipe);
                         RecipeService.findRecipeById(recipe.id)
                             .then(function (response) {
                                 vm.likesForUser.push(response.data);

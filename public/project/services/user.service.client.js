@@ -87,7 +87,7 @@
         }
 
         function searchUser(userQuery) {
-            console.log(userQuery);
+           // console.log(userQuery);
             return $http.get("/api/search/user/"+userQuery);
         }
 

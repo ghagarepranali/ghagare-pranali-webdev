@@ -7,16 +7,16 @@
             var vm=this;
             vm.userId = $routeParams.uid;
             vm.rid = $routeParams.rid;
-            console.log("the rid is "+ vm.rid);
+           // console.log("the rid is "+ vm.rid);
             vm.currentUser = currentUser;
             vm.addToFav = addToFav;
 
        // vm.viewRecipe = viewRecipe;
-            console.log("1");
+           // console.log("1");
             vm.writeReview = writeReview;
 
         function init() {
-console.log("the rid is "+ vm.rid);
+//console.log("the rid is "+ vm.rid);
            var recipeSearchId = "https://api.edamam.com/search?r=http://www.edamam.com/ontologies/edamam.owl%23recipe_"+vm.rid
                +"&app_id=8ad19515&app_key=ceec8d097db8b2d50f1d6645d4a0efd4";
            vm.recipeSearchId = recipeSearchId;
@@ -45,14 +45,13 @@ function addToFav(recipe) {
     RecipeService.addToFav(vm.userId, recipe, vm.rid)
         .success(function (response) {
             vm.message="Successfully Liked";
-            console.log(vm.message);
+           // console.log(vm.message);
             vm.setFlagForLiked = true;
         })
 }
 
 function writeReview(review) {
-
-    console.log("");
+   // console.log("");
     $location.url("/user/"+vm.userId+"/review/"+vm.rid);
 }
     }
