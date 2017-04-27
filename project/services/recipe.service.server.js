@@ -7,7 +7,7 @@ module.exports = function (app, recipeModel, userModel) {
 
     function addToFav(req, res) {
         var userId = req.params.userId;
-        console.log(userId);
+       // console.log(userId);
         var recipeId = req.params.rid;
         var newRecipe = req.body;
         var recipe = {
@@ -50,7 +50,7 @@ module.exports = function (app, recipeModel, userModel) {
 
     function findRecipe(req, res) {
         var rid = req.params.recipeid;
-        console.log("in server" +rid);
+       // console.log("in server" +rid);
     recipeModel.findRecipe(rid).
         then(function (recipe) {
         res.json(recipe);

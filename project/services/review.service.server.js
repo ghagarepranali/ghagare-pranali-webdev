@@ -36,14 +36,14 @@ module.exports = function (app, reviewModel) {
     }
 
     function approveReview(req, res) {
-        console.log("in app review");
+       // console.log("in app review");
         var adminId = req.params.adminId;
         var review = req.body;
         //console.log(review);
         reviewModel
             .approveReview(review, adminId)
             .then(function () {
-                console.log("updated");
+               // console.log("updated");
                 res.sendStatus(200);
             }, function (err) {
                 res.sendStatus(404);
