@@ -4,37 +4,123 @@
     Hi, {{model.adminUser.username}}</a>
 </nav>
 
-<div ng-show="model.error" class="alert alert-danger thumbnail-style" role="alert">
-    {{model.error}}
-</div>
-<div class="alert alert-primary thumbnail-style" ng-show="model.message">
-    {{model.message}}
-</div>
-<ul class="list-group">
-<li ng-repeat="review in model.pendingReviews" class="list-group-item">
-    <div class="row thumbnail-style">
 
-    <div class="col-xs-12 col-md-4">
-        <img ng-src="{{review.recipeImg}}"/></div>
+<div class="container-fluid margin-class">
 
-        <div class="col-sm-8">
-        <label>Review Content : </label>
 
-{{review.description}}</div>
-        <div class="col-sm-8">
-        <label>Reviewed By : </label>
-        {{review.username}}
+
+    <div class="col-sm-4">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <a ng-click="model.setActiveTab('updateProfile')">
+                            Update Profile</a>
+                    </div>
+
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <a ng-click="model.setActiveTab('showReviews')">
+                            Reviews</a>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-sm-8" ng-show="model.showUpdatePage">
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
         </div>
+        <div class="alert alert-success" ng-show="model.message">
+            {{model.message}}
+        </div>
+        <form name="form1" class="form-group" novalidate>
+            <label for="username">Username</label>
+            <input ng-model="model.adminUser.username"
+                   id="username"
+                   name="username"
+                   type="text"
+                   placeholder="Username"
+                   class="form-control" required/>
+            <p ng-show="form1.username.$error.required && !form1.$pristine" class="error-text">Username is required</p>
 
-        <div class="col-sm-8">
-        <label>Recipe Name:</label>
-        {{review.recipeName}}
+            <label for="email">Email</label>
+            <input ng-model="model.adminUser.email"
+                   id="email"
+                   type="email"
+                   placeholder="Email Id"
+                   class="form-control" required/>
+            <p ng-show="form1.email.$invalid && !form1.email.$pristine && form1.email.$error.required" class="error-text">This is not a valid email</p>
+
+            <label for="firstName">First Name</label>
+            <input ng-model="model.adminUser.firstName"
+                   id="firstName"
+                   type="text"
+                   placeholder="First Name"
+                   class="form-control"/>
+
+            <label for="lastName">Last Name</label>
+            <input ng-model="model.adminUser.lastName"
+                   id="lastName"
+                   type="text"
+                   placeholder="Last Name"
+                   class="form-control"/>
+
+            <a ng-click="model.updateUsr(model.adminUser)" class="btn btn-block btn-success">Update</a>
+            <a ng-click="model.deleteUser()" class="btn btn-block btn-primary">Delete</a>
+            <a ng-click="model.logout()" class="btn btn-danger btn-block">Logout</a>
+
+        </form>
+    </div>
+
+    <div class="col-sm-8" ng-show="model.showReviews">
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
         </div>
-        <div>
-        <a ng-click="model.approveReview(review)" class="btn btn-primary">Approve review and turn user to a critic</a>
-        <a ng-click="model.declineReview(review)" class="btn btn-danger">Decline review</a>
+        <div class="alert alert-success" ng-show="model.message">
+            {{model.message}}
         </div>
+        <div ng-hide="model.pendingReviews.length > 0"> No pending reviews</div>
+            <ul ng-repeat="review in model.pendingReviews" class="list-group margin-class">
+                <div class="row margin-class">
+                    <li class="list-group-item">
+
+                        <img ng-src="{{review.recipeImg}}"/>
+                    </li>
+                    <li class="list-group-item">
+                        <label>Review Content : </label>
+
+                        {{review.description}}
+                    </li>
+
+                    <li class="list-group-item">
+                        <label>Reviewed By : </label>
+                        {{review.username}}
+                    </li>
+
+                    <li class="list-group-item">
+                        <label>Recipe Name:</label>
+                        {{review.recipeName}}
+                    </li>
+                    <li class="list-group-item">
+                        <a ng-click="model.approveReview(review)" class="btn btn-primary btn-block">Approve review and turn user to a critic</a>
+                        <a ng-click="model.declineReview(review)" class="btn btn-danger btn-block">Decline review</a>
+
+                    </li>
+
+                </div>
+            </ul>
+
+
+    </div>
+
 
 </div>
-</li>
-</ul>
+
+
+

@@ -130,6 +130,8 @@ console.log("initial value "+ vm.otherProfile);
 
         function setActiveTab(parameter) {
             if(parameter == "updateProfile"){
+                vm.message="";
+                vm.error="";
                 vm.showUpdatePage = true;
                 vm.showReviews = false;
                 vm.showLikes = false;
@@ -138,6 +140,8 @@ console.log("initial value "+ vm.otherProfile);
                 vm.showFollowers = false;
               //  viewProfile();
             } else if(parameter == "showReviews"){
+                vm.message="";
+                vm.error="";
                 vm.showUpdatePage = false;
                 vm.showReviews = true;
                 vm.showLikes = false;
@@ -147,6 +151,8 @@ console.log("initial value "+ vm.otherProfile);
                 displayReviews();
 
             } else if(parameter == "showLikes"){
+                vm.message="";
+                vm.error="";
                 vm.showUpdatePage = false;
                 vm.showReviews = false;
                 vm.showLikes = true;
@@ -155,6 +161,8 @@ console.log("initial value "+ vm.otherProfile);
                 vm.showFollowers = false;
                 displayLikes();
             } else if(parameter == "showSearchUsers"){
+                vm.message="";
+                vm.error="";
                 vm.showUpdatePage = false;
                 vm.showReviews = false;
                 vm.showLikes = false;
@@ -162,6 +170,8 @@ console.log("initial value "+ vm.otherProfile);
                 vm.showFollowing = false;
                 vm.showFollowers = false;
             } else if(parameter == "showFollowing"){
+                vm.message="";
+                vm.error="";
                 vm.showUpdatePage = false;
                 vm.showReviews = false;
                 vm.showLikes = false;
@@ -170,6 +180,8 @@ console.log("initial value "+ vm.otherProfile);
                 vm.showFollowers = false;
                 displayFollowing();
             } else if(parameter == "showFollowers"){
+                vm.message="";
+                vm.error="";
                 vm.showUpdatePage = false;
                 vm.showReviews = false;
                 vm.showLikes = false;
@@ -178,6 +190,8 @@ console.log("initial value "+ vm.otherProfile);
                 vm.showFollowers = true;
                 displayFollowers();
             } else {
+                vm.message="";
+                vm.error="";
                 vm.showUpdatePage = true;
                 vm.showReviews = false;
                 vm.showLikes = false;

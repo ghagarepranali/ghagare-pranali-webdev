@@ -1,4 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
+    <span class="glyphicon glyphicon-cutlery navbar-brand navbar-left" aria-hidden="true"></span>
        <a class="navbar-brand" href="#/user/{{model.currentUser._id}}/search">Munchkins</a>
 
         <a ng-hide="{{model.currentUser != null}}" href="#/register" class="navbar-brand pull-right">Register</a>
@@ -13,12 +14,6 @@
 
 <div class="container-fluid margin-class">
 
-    <div ng-show="model.error" class="alert alert-danger" role="alert">
-        {{model.error}}
-    </div>
-    <div class="alert alert-success" ng-show="model.message">
-        {{model.message}}
-    </div>
 
     <div class="col-sm-4">
         <ul class="list-group">
@@ -79,6 +74,14 @@
         </ul>
     </div>
     <div class="col-sm-8" ng-show="model.showUpdatePage">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+        <div class="alert alert-success" ng-show="model.message">
+            {{model.message}}
+        </div>
+
         <form name="form1" class="form-group" novalidate>
     <label for="username">Username</label>
     <input ng-model="model.user.username"
@@ -118,6 +121,14 @@
         </form>
     </div>
     <div class="col-sm-8" ng-show="model.showReviews">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+        <div class="alert alert-success" ng-show="model.message">
+            {{model.message}}
+        </div>
+        <div ng-hide="model.listOfReviewsForUser.length > 0"> No reviews</div>
         <div ng-repeat="r in model.listOfReviewsForUser">
             <div class="panel panel-default">
                 <div class="panel-heading"><label>Recipe Name: </label> {{r.recipeName}}</div>
@@ -132,6 +143,15 @@
     </div>
 
 <div class="col-sm-8" ng-show="model.showLikes">
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+    <div class="alert alert-success" ng-show="model.message">
+        {{model.message}}
+    </div>
+    <div ng-hide="model.likesForUser.length > 0"> No likes</div>
+
     <div ng-repeat="like in model.likesForUser">
 
         <div class="panel panel-default">
@@ -145,6 +165,14 @@
 </div>
 
     <div class="col-sm-8 margin-class" ng-show="model.showFollowing">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+        <div class="alert alert-success" ng-show="model.message">
+            {{model.message}}
+        </div>
+        <div ng-hide="model.listOfFollowing.length > 0"> Not following anyone </div>
         <div ng-repeat="lifg in model.listOfFollowing">
 <ul class="list-group">
     <li class="list-group-item">
@@ -157,6 +185,14 @@
     </div>
 
     <div class="col-sm-8 margin-class" ng-show="model.showFollowers">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+        <div class="alert alert-success" ng-show="model.message">
+            {{model.message}}
+        </div>
+        <div ng-hide="model.listOfFollowers.length > 0"> No followers</div>
          <div ng-repeat="lif in model.listOfFollowers">
              <li>
              <a href="#/user/other/{{lif._id}}">
@@ -167,10 +203,25 @@
 
 
     <div class="col-sm-8 margin-class" ng-show="model.showSearchUsers">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+        <div class="alert alert-success" ng-show="model.message">
+            {{model.message}}
+        </div>
     <input ng-model="model.search.user" id="searchUser" type="text" placeholder="searchUser" class="form-control"/>
     <a ng-click="model.searchUser(model.search.user)" class="btn btn-block btn-primary"> search user</a>
 
     <div ng-repeat="userResult in model.userSearchResults">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+        <div class="alert alert-success" ng-show="model.message">
+            {{model.message}}
+        </div>
+
         <ul class="list-group">
             <li class="list-group-item">
                 <a href="#/user/other/{{userResult._id}}"> {{userResult.username}}</a>

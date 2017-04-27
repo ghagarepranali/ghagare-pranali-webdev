@@ -9,17 +9,79 @@
         vm.approveReview = approveReview;
         vm.declineReview = declineReview;
         vm.logout = logout;
+        vm.deleteUser=deleteUser;
+        vm.updateUsr = updateUsr;
+        vm.setActiveTab = setActiveTab;
 
         function init() {
             //console.log(vm.adminUser);
            // console.log(vm.adminUser._id);
+
+        }
+        init();
+
+
+
+        function updateUsr  (user) {
+
+            var promise = UserService
+                .updateUser(vm.adminUser._id, user);
+            promise.success(function (user) {
+                if (user == null) {
+                    vm.error = "Unable to update the user";
+                } else {
+                    vm.message = "User is updated successfully";
+                   // $location.url("/user/" + vm.userId);
+
+                }
+            })
+
+        }
+        function deleteUser () {
+            var answer = confirm("Are you sure?");
+            if(answer) {
+                UserService
+                    .deleteUser(vm.adminUser._id)
+                    .success(function () {
+                        $location.url("/login");
+                    })
+                    .error(function () {
+                        vm.error = 'unable to remove user';
+                    });
+            }
+        }
+
+
+        function setActiveTab(parameter) {
+            if (parameter == "updateProfile") {
+                vm.message="";
+                vm.error="";
+                vm.showUpdatePage = true;
+                vm.showReviews = false;
+                vm.showLikes = false;
+                vm.showSearchUsers = false;
+                vm.showFollowing = false;
+                vm.showFollowers = false;
+                //  viewProfile();
+            } else if (parameter == "showReviews") {
+                vm.message="";
+                vm.error="";
+                vm.showUpdatePage = false;
+                vm.showReviews = true;
+                vm.showLikes = false;
+                vm.showSearchUsers = false;
+                vm.showFollowing = false;
+                vm.showFollowers = false;
+                displayReviews();
+
+            }
+        }
+        function displayReviews() {
             ReviewService
                 .findPendingCriticReviews(vm.adminUser._id)
                 .success(displayPendingReviews);
         }
-        init();
-        
-        function displayPendingReviews(response) {
+            function displayPendingReviews(response) {
 
                 vm.pendingReviews = response;
 
@@ -51,7 +113,7 @@
                     ReviewService
                         .findPendingCriticReviews(vm.adminUser._id)
                         .success(function (response) {
-                            vm.message = "Review is rejected successfully";
+                            vm.error = "Review is rejected successfully";
                             //  console.log("response is  "+response);
                             vm.pendingReviews = response;
                         }, function (err) {
