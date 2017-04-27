@@ -12,7 +12,7 @@
             UserService.login(user)
                 .then(function (user) {
                     if (user) {
-                       // console.log("login control");
+                        //console.log("login control");
                         //console.log(user._id);
                         $location.url("/user/"+user._id);
                     }

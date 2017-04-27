@@ -13,7 +13,42 @@
 
 </nav>
 
-<div class="col-sm-8 container-fluid margin-class">
+<div class="container-fluid margin-class">
+
+
+
+    <div class="col-sm-4">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <a ng-click="model.setActiveTab('updateProfile')">
+                            Profile</a>
+                    </div>
+
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <a ng-click="model.setActiveTab('showReviews')">
+                            Reviews</a>
+                    </div>
+
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <a ng-click="model.setActiveTab('showLikes')">
+                            Likes</a>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-8" ng-show="model.showUpdatePage">
 
     <label for="username">Username</label>
     <input ng-model="model.user.username"
@@ -42,4 +77,47 @@
            type="text"
            placeholder="Last Name"
            class="form-control" readonly/>
+</div>
+
+    <div class="col-sm-8" ng-show="model.showReviews">
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+    <div class="alert alert-success" ng-show="model.message">
+        {{model.message}}
+    </div>
+    <div ng-hide="model.listOfReviewsForUser.length > 0"> No reviews</div>
+    <div ng-repeat="r in model.listOfReviewsForUser">
+        <div class="panel panel-default">
+            <div class="panel-heading"><label>Recipe Name: </label> {{r.recipeName}}</div>
+            <div class="panel-heading"> <label>Review Content: </label> {{r.description}}</div>
+            <div class="panel-body">
+                <img ng-src="{{r.recipeImg}}">
+            </div>
+        </div>
+
+
+    </div>
+</div>
+    <div class="col-sm-8" ng-show="model.showLikes">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+        <div class="alert alert-success" ng-show="model.message">
+            {{model.message}}
+        </div>
+        <div ng-hide="model.likesForUser.length > 0"> No likes</div>
+
+        <div ng-repeat="like in model.likesForUser">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">{{like[0].label}}</div>
+                <div class="panel-body">
+                    <img ng-src="{{like[0].image}}">
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
